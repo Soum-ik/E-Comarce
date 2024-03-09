@@ -38,21 +38,21 @@ export default function MainNav() {
             className="flex items-center justify-center gap-2"
             href={"/cart"}
           >
-            <VscAccount />
+            <MdOutlineShoppingCart />
             Cart
           </Link>
           <Link
             className="flex items-center justify-center gap-2"
-            href={"/Wishlist"}
+            href={"/wishlist"}
           >
             <CiHeart />
             Wishlist
           </Link>
           <Link
             className="flex items-center justify-center gap-2"
-            href={"/Account"}
+            href={"/account"}
           >
-            <MdOutlineShoppingCart />
+            <VscAccount />
             Account
           </Link>
         </div>
@@ -66,16 +66,16 @@ export default function MainNav() {
           <Link href="/" className="md:mr-5 mr-3 hover:text-gray-900">
             Home
           </Link>
-          <Link href="/Category" className=" md:mr-5 mr-3 hover:text-gray-900">
+          <Link href="/category" className=" md:mr-5 mr-3 hover:text-gray-900">
             Category
           </Link>
-          <Link href="/Products" className=" md:mr-5 mr-3 hover:text-gray-900">
+          <Link href="/products" className=" md:mr-5 mr-3 hover:text-gray-900">
             Products
           </Link>
-          <Link href="/About Us" className=" md:mr-5 mr-3 hover:text-gray-900">
+          <Link href="aboutUs" className=" md:mr-5 mr-3 hover:text-gray-900">
             About Us
           </Link>
-          <Link href="/Contacts" className=" md:mr-5 mr-3 hover:text-gray-900">
+          <Link href="/contacts" className=" md:mr-5 mr-3 hover:text-gray-900">
             Contacts
           </Link>
         </nav>
