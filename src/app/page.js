@@ -1,11 +1,14 @@
-import MainNav from "@/components/navbar/MainNav";
-import TopNav from "@/components/navbar/TopNav";
-import { Button } from "@/components/ui/button";
+import Hero from "@/components/Hero-section/Hero";
+import Image from "next/image";
 import React from "react";
 
 export default function Page() {
   return (
-    <div> 
+    <div>
+      <Hero />
+      <div className=" w-full mb-20">
+        <Image width={10000} height={700} alt="dicount image" src="/images/dicount.png"/>
+      </div>
     </div>
   );
 }

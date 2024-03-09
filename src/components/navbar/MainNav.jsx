@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import image from "../../../public/image/logo.png";
 import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
@@ -22,7 +21,7 @@ export default function MainNav() {
             href={"/"}
             className="flex title-font font-medium items-center text-gray-900  md:mb-0"
           >
-            <Image alt="logo" src={image} width={150} />
+            <Image alt="logo" src="/images/logo.png" width={150} height={150} />
           </Link>
           <div className=" md:hidden " onClick={() => setOpen(!open)}>
             {open ? <CiMenuFries size={25} /> : <IoClose size={25} />}

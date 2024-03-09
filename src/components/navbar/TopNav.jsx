@@ -24,7 +24,7 @@ export default function TopNav() {
               Products
             </Link>
             <Link
-              href="/About Us"
+              href="/AboutUs"
               className=" md:mr-5 mr-3 hover:text-gray-900"
             >
               About Us
