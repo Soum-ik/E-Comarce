@@ -1,20 +1,42 @@
 "use client";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Sign() {
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
-
-  const handleSubmit = (e) => {
-    let emailData = emailRef.value;
-    let passwordData = passwordRef.value;
-    console.log(emailData, passwordData);
+  const route = useRouter();
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
+  const handChanges = (name, value) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await fetch(`http://localhost:3000/api/User/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    console.log(res);
+    if (res.status === "success") {
+      toast.success("Login SuccessFull");
+      route.replace("/account");
+    } else {
+      toast.error("Login Unsuccess");
+    }
   };
 
   return (
     <div className="flex items-center my-8 bg-white dark:bg-gray-900">
+      <Toaster position="top-center" reverseOrder={false} />
+
       <div className="container mx-auto">
         <div className="max-w-md mx-auto ">
           <div className="text-center">
@@ -37,8 +59,9 @@ export default function Sign() {
                 <input
                   type="email"
                   name="email"
-                  ref={emailRef}
                   id="email"
+                  value={form.email}
+                  onChange={(e) => handChanges("email", e.target.value)}
                   placeholder="you@company.com"
                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
@@ -60,8 +83,9 @@ export default function Sign() {
                 </div>
                 <input
                   type="password"
-                  ref={passwordRef}
                   name="password"
+                  value={form.password}
+                  onChange={(e) => handChanges("password", e.target.value)}
                   id="password"
                   placeholder="Your Password"
                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"

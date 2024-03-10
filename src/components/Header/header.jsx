@@ -14,13 +14,15 @@ function PageHeader() {
           {routeArray}
         </div>
         <nav className="   text-white" aria-label="Breadcrumb">
-          <ol className="flex items-center justify-center  ">
+          <ol className="flex items-center justify-center uppercase ">
             <li className=" items-center">
               <Link href="/" className="  items-center   font-medium  ">
                 {"Home  /"}
               </Link>
             </li>
-            <Link href={routeArray}>{routeArray}</Link>
+            <Link className=" " href={routeArray}>
+              {routeArray}
+            </Link>
           </ol>
         </nav>
       </div>

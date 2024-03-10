@@ -5,7 +5,7 @@ import Image from "next/image";
 import { BsSearch } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { CiHeart, CiMenuFries } from "react-icons/ci";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { MdOutlineShoppingCart } from "react-icons/md"; 
 
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
@@ -14,6 +14,12 @@ export default function MainNav() {
   const [open, setOpen] = useState(true);
   return (
     <header className="text-gray-600 body-font">
+      {/* <ProgressBar
+        height="4px"
+        color="#fffd00"
+        options={{ showSpinner: false }}
+        shallowRouting
+      /> */}
       <div className="  container mx-auto flex    justify-between flex-col md:flex-row items-center">
         {/* left logo */}
         <div className=" flex items-center min-w-[280px] sm:min-w-[500px] md:min-w-max justify-between">

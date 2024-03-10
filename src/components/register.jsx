@@ -100,16 +100,16 @@ export default function Register() {
                   type="submit"
                   className="w-full px-3 py-4 text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none"
                 >
-                  Sign in
+                  Sign Up
                 </button>
               </div>
               <p className="text-sm text-center text-gray-400">
                 {" Don't have an account yet? "}
                 <Link
-                  href="/register"
+                  href="/login"
                   className="text-red-500 focus:outline-none focus:underline focus:text-red-500 dark:focus:border-red-800"
                 >
-                  Sign up
+                  Sign In
                 </Link>
                 .
               </p>

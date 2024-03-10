@@ -23,17 +23,11 @@ export default function TopNav() {
             >
               Products
             </Link>
-            <Link
-              href="/aboutUs"
-              className=" md:mr-5 mr-3 hover:text-gray-900"
-            >
+            <Link href="/aboutUs" className=" md:mr-5 mr-3 hover:text-gray-900">
               About Us
             </Link>
-            <Link
-              href="/contacts"
-              className=" md:mr-5 mr-3 hover:text-gray-900"
-            >
-              Contacts
+            <Link href="/faq" className=" md:mr-5 mr-3 hover:text-gray-900">
+              Faq
             </Link>
           </nav>
           <button className=" fix hidden md:inline-flex items-center   border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
