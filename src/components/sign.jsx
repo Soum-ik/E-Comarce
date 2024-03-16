@@ -5,7 +5,7 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Sign() {
-  const route = useRouter();
+  const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -18,16 +18,12 @@ export default function Sign() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:3000/api/User/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const config = { method: "POST", body: JSON.stringify(form) };
+    const res = await fetch(` /api/User/login`, config);
     console.log(res);
-    if (res.status === "success") {
+    if (res.ok) {
       toast.success("Login SuccessFull");
-      route.replace("/account");
+      router.replace("/cart");
     } else {
       toast.error("Login Unsuccess");
     }

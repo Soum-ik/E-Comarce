@@ -2,23 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { BsSearch } from "react-icons/bs";
-import { VscAccount } from "react-icons/vsc";
-import { CiHeart, CiMenuFries } from "react-icons/ci";
-import { MdOutlineShoppingCart } from "react-icons/md";
+import { CiMenuFries } from "react-icons/ci";
 
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
-import Popup from "../PopUp";
 
-export default function MainNav() {
+export default function DashNav() {
   const [open, setOpen] = useState(true);
-  const [popupOpen, setPopupOpen] = useState(false);
-
-  const onClose = () => {
-    setPopupOpen(false);
-    console.log("pop up off");
-  };
 
   return (
     <header className="text-gray-600 body-font">
@@ -26,7 +16,7 @@ export default function MainNav() {
         {/* left logo */}
         <div className=" flex items-center min-w-[280px] sm:min-w-[500px] md:min-w-max justify-between">
           <Link
-            href={"/"}
+            href={"/dashboard"}
             className="flex title-font font-medium items-center text-gray-900  md:mb-0"
           >
             <Image alt="logo" src="/images/logo.png" width={150} height={100} />
@@ -35,35 +25,13 @@ export default function MainNav() {
             {open ? <CiMenuFries size={25} /> : <IoClose size={25} />}
           </div>
         </div>
-        <div className=" lg:min-w-[500px] sm:min-w-[400px] min-w-[300px] px-5 py-2 border rounded-full flex items-center justify-between">
-          <input className=" outline-none w-full" type="text" name="" id="" />
-          <button>
-            <BsSearch />
-          </button>
-        </div>
+
         <div className="space-x-5 mt-4 md:mt-0 flex ">
-          <Link
-            className="flex items-center justify-center gap-2"
-            href={"/cart"}
-          >
-            <MdOutlineShoppingCart />
-            Cart
-          </Link>
-          <Link
-            className="flex items-center justify-center gap-2"
-            href={"/wishlist"}
-          >
-            <CiHeart />
-            Wishlist
-          </Link>
-          <button
-            className="flex items-center justify-center gap-2 relative "
-            onClick={() => setPopupOpen(!popupOpen)}
-          >
-            <VscAccount />
-            Account
-          </button>
-          <div className=" absolute right-36 shadow-2xl backdrop-blur-sm top-28">{popupOpen && <Popup onClose={onClose} />}</div>
+          <div className=" absolute right-36 shadow-2xl backdrop-blur-sm top-28"></div>
+          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard"}>Dashboard</Link>
+          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/product"}>Product</Link>
+          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/categories"}>Categories</Link>
+          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/details"}>Account Details</Link>
         </div>
       </div>
       {!open && (

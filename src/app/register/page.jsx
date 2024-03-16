@@ -6,9 +6,7 @@ export default function page() {
   return (
     <>
       <PageHeader />
-      <div className=" ">
-        <Register />
-      </div>
+      <Register />
     </>
   );
 }

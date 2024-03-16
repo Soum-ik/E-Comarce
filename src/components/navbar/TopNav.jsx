@@ -33,6 +33,12 @@ export default function TopNav() {
           <button className=" fix hidden md:inline-flex items-center   border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0">
             +880454571 4545
           </button>
+          <Link
+            href={"/dashboard"}
+            className=" fix hidden md:inline-flex items-center   border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
+          >
+            Admin
+          </Link>
         </div>
       </header>
     </div>
