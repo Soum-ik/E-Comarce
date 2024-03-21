@@ -1,35 +1,66 @@
 "use client";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function AddNewProduct() {
-  const router = useRouter();
   const [form, setForm] = useState({
     name: "",
-    description: "",
     price: "",
-    brand: "",
     unit: "",
-    discountPercentage: "",
-    category: "",
     imagurl: "",
+    category_id: "",
+    title: "",
+    description: "",
+    brand: "",
+    discountPercentage: "",
   });
+
   const handChanges = (name, value) => {
     setForm((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const apiKey = "7a4a20aea9e7d64e24c6e75b2972ff00";
+    const uploadUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+    const res = await fetch(uploadUrl, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await res.json();
+    const image = data.data.url;
+    setForm((pre) => ({
+      ...pre,
+      imagurl: image,
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = { method: "POST", body: JSON.stringify(form) };
-    const res = await fetch(` /api/User/login`, config);
+    const res = await fetch(` /api/product`, config);
     console.log(res);
     if (res.ok) {
-      toast.success("Login SuccessFull");
-      router.replace("/cart");
+      toast.success("Add Product SuccessFull");
+      // setForm({
+      //   name: "",
+      //   price: "",
+      //   unit: "",
+      //   imagurl: "",
+      //   category_id: "",
+      //   title: "",
+      //   description: "",
+      //   brand: "",
+      //   discountPercentage: "",
+      // });
     } else {
       toast.error("Login Unsuccess");
     }
@@ -48,15 +79,32 @@ export default function AddNewProduct() {
                   htmlFor="email"
                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
                 >
-                  Title
+                  Name
                 </label>
                 <input
-                  type="name"
+                  type="text"
                   name="name"
                   id="name"
                   value={form.name}
                   onChange={(e) => handChanges("name", e.target.value)}
                   placeholder="Add Your Product title"
+                  className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                />
+              </div>
+              <div className="mb-6">
+                <label
+                  htmlFor="title"
+                  className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
+                >
+                  Short Description
+                </label>
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  value={form.title}
+                  onChange={(e) => handChanges("title", e.target.value)}
+                  placeholder="Add Short Description  title"
                   className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
               </div>
@@ -78,8 +126,27 @@ export default function AddNewProduct() {
                   className="w-full px-3 min-h-[200px] py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                 />
               </div>
+              <div className=" space-y-2 mb-6">
+                <label htmlFor="">Image Upload</label>
+                <div>
+                  <input
+                    // onChange={() => handleFileChange()}
+                    onChange={handleFileChange}
+                    type="file"
+                    placeholder="imagurl"
+                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                  />
+                </div>
+                {form.imagurl && (
+                  <Image
+                    src={form.imagurl}
+                    width={200}
+                    height={50}
+                    alt="product iamge"
+                  />
+                )}
+              </div>
 
-              {/*  */}
               <div className=" flex flex-row w-full gap-2">
                 <div className="mb-6 w-full">
                   <label
@@ -128,8 +195,8 @@ export default function AddNewProduct() {
                     type="text"
                     name="category"
                     id="category"
-                    value={form.category}
-                    onChange={(e) => handChanges("category", e.target.value)}
+                    value={form.category_id}
+                    onChange={(e) => handChanges("category_id", e.target.value)}
                     placeholder="category"
                     className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                   />

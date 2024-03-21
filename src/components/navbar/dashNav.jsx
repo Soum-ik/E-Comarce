@@ -26,12 +26,32 @@ export default function DashNav() {
           </div>
         </div>
 
-        <div className="space-x-5 mt-4 md:mt-0 flex ">
+        <div className=" md:flex  hidden space-x-5 mt-4 md:mt-0   ">
           <div className=" absolute right-36 shadow-2xl backdrop-blur-sm top-28"></div>
-          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard"}>Dashboard</Link>
-          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/product"}>Product</Link>
-          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/categories"}>Categories</Link>
-          <Link className=" px-2 py-2 rounded-md bg-slate-300/40" href={"/dashboard/details"}>Account Details</Link>
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard"}
+          >
+            Dashboard
+          </Link>
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/product"}
+          >
+            Product
+          </Link>
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/categories"}
+          >
+            Categories
+          </Link>
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/details"}
+          >
+            Account Details
+          </Link>
         </div>
       </div>
       {!open && (
@@ -40,20 +60,29 @@ export default function DashNav() {
           className={` md:hidden  
              md:ml-auto md:mr-auto flex flex-col mt-10 space-y-5 items-center justify-center  text-base  `}
         >
-          <Link href="/" className="md:mr-5 mr-3 hover:text-gray-900">
-            Home
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard"}
+          >
+            Dashboard
           </Link>
-          <Link href="/category" className=" md:mr-5 mr-3 hover:text-gray-900">
-            Category
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/product"}
+          >
+            Product
           </Link>
-          <Link href="/products" className=" md:mr-5 mr-3 hover:text-gray-900">
-            Products
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/categories"}
+          >
+            Categories
           </Link>
-          <Link href="aboutUs" className=" md:mr-5 mr-3 hover:text-gray-900">
-            About Us
-          </Link>
-          <Link href="/contacts" className=" md:mr-5 mr-3 hover:text-gray-900">
-            Contacts
+          <Link
+            className=" px-2 py-2 rounded-md bg-slate-300/40"
+            href={"/dashboard/details"}
+          >
+            Account Details
           </Link>
         </nav>
       )}

@@ -7,7 +7,6 @@ import toast, { Toaster } from "react-hot-toast";
 function AddProduct() {
   const route = useRouter();
   function handleProduct() {
-    toast.success("Add SuccessFully");
     route.push("/dashboard/product/new");
   }
   return (
