@@ -27,16 +27,16 @@ async function Page() {
         </div>
       </div>
       {/* jsut view */}
-      <div className="  gap-4  grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20 mt-5">
-        <div className=" flex items-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-16 py-10 rounded-md">
+      <div className="  gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
+        <div className=" flex flex-1  flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1>Total Profit</h1>
-          <p>${0}</p>
+          <p></p>
         </div>
-        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-16 py-10 rounded-md">
+        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1>Product</h1>
           <p></p>
         </div>
-        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-16 py-10 rounded-md">
+        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1>Categoris</h1>
           <p></p>
         </div>

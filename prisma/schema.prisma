@@ -32,20 +32,22 @@ model product {
   description        String
   brand              String
   discountPercentage String
-
   user   users  @relation(fields: [userId], references: [id])
   userId String @db.ObjectId
 
-  category    category @relation(fields: [category_id], references: [id])
-  category_id String
+  category   category @relation(fields: [categoryId], references: [id])
+  categoryId String   @db.ObjectId
+
   // Order      Order[]
 }
 
 model category {
-  id      String    @id @default(auto()) @map("_id") @db.ObjectId
-  name    String
-  user    users     @relation(fields: [userId], references: [id])
-  userId  String    @db.ObjectId
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+
+  user   users  @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+
   product product[]
 }
 

@@ -3,17 +3,15 @@ import { PrismaClient } from "@prisma/client";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
-// create product
+// create category
 export async function POST(req, res) {
   try {
     const prisma = new PrismaClient();
     let headerList = headers();
     let id = headerList.get("id");
-
     let reqBody = await req.json();
     reqBody.userId = id;
-
-    const result = await prisma.product.create({
+    const result = await prisma.category.create({
       data: reqBody,
     });
     console.log(result);
@@ -24,7 +22,7 @@ export async function POST(req, res) {
   }
 }
 
-// update product
+// update category
 export async function PUT(req, res) {
   try {
     const prisma = new PrismaClient();
@@ -32,13 +30,13 @@ export async function PUT(req, res) {
     let id = headerList.get("id");
 
     let { searchParams } = new URL(req.url);
-    let product_id = searchParams.get("product_id");
+    let category_id = searchParams.get("category_id");
 
     let reqBody = await req.json();
 
-    const result = await prisma.product.update({
+    const result = await prisma.category.update({
       where: {
-        id: product_id,
+        id: category_id,
         userId: id,
       },
       data: reqBody,
@@ -51,7 +49,7 @@ export async function PUT(req, res) {
   }
 }
 
-// Get all product
+// Get all category
 export async function GET(req, res) {
   try {
     const prisma = new PrismaClient();
@@ -59,35 +57,30 @@ export async function GET(req, res) {
 
     let id = headerList.get("id");
 
-    const result = await prisma.product.findMany({
+    const result = await prisma.category.findMany({
       where: {
         userId: id,
       },
     });
-
-    if (result.length <= 0) {
-      return NextResponse.json({ status: "Data not found" });
-    }
-
-    return NextResponse.json({ status: "Data found", data: result });
+    return NextResponse.json({ status: "Create Successfully", data: result });
   } catch (error) {
     console.error("Error occurred:", error);
     return NextResponse.json({ status: "fail", error: error });
   }
 }
 
-// delete product
+// delete category
 export async function DELETE(req, res) {
   try {
     const prisma = new PrismaClient();
     let headerList = headers();
     let id = headerList.get("id");
     let { searchParams } = new URL(req.url);
-    let product_id = searchParams.get("product_id");
+    let category_id = searchParams.get("category_id");
 
-    const result = await prisma.product.delete({
+    const result = await prisma.category.delete({
       where: {
-        id: product_id,
+        id: category_id,
         userId: id,
       },
     });
@@ -98,7 +91,7 @@ export async function DELETE(req, res) {
   }
 }
 
-// get singel product
+// get singel category
 export async function PATCH(req, res) {
   try {
     const prisma = new PrismaClient();
@@ -106,12 +99,12 @@ export async function PATCH(req, res) {
 
     let id = headerList.get("id");
     let { searchParams } = new URL(req.url);
-    let product_id = searchParams.get("product_id");
+    let category_id = searchParams.get("category_id");
 
-    const result = await prisma.product.findUnique({
+    const result = await prisma.category.findUnique({
       where: {
         userId: id,
-        id: product_id,
+        id: category_id,
       },
     });
     return NextResponse.json({ status: "Find Successfully", data: result });

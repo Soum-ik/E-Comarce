@@ -22,9 +22,9 @@ export default function MainNav() {
 
   return (
     <header className="text-gray-600 body-font">
-      <div className="  container mx-auto flex    justify-between flex-col md:flex-row items-center">
+      <div className="  container mx-auto flex justify-between flex-col md:flex-row items-center">
         {/* left logo */}
-        <div className=" flex items-center min-w-[280px] sm:min-w-[500px] md:min-w-max justify-between">
+        <div className=" flex items-center min-w-[350px] sm:min-w-[500px] md:min-w-max justify-between">
           <Link
             href={"/"}
             className="flex title-font font-medium items-center text-gray-900  md:mb-0"
