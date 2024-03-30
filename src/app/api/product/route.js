@@ -9,7 +9,7 @@ export async function POST(req, res) {
     const prisma = new PrismaClient();
     let headerList = headers();
     let id = headerList.get("id");
-
+    console.log(id);
     let reqBody = await req.json();
     reqBody.userId = id;
 
@@ -56,8 +56,8 @@ export async function GET(req, res) {
   try {
     const prisma = new PrismaClient();
     let headerList = headers();
-
     let id = headerList.get("id");
+    console.log(id);
 
     const result = await prisma.product.findMany({
       where: {
@@ -65,9 +65,9 @@ export async function GET(req, res) {
       },
     });
 
-    if (result.length <= 0) {
-      return NextResponse.json({ status: "Data not found" });
-    }
+    // if (result.length <= 0) {
+    //   return NextResponse.json({ status: "Data not found" });
+    // }
 
     return NextResponse.json({ status: "Data found", data: result });
   } catch (error) {
@@ -75,7 +75,6 @@ export async function GET(req, res) {
     return NextResponse.json({ status: "fail", error: error });
   }
 }
-
 // delete product
 export async function DELETE(req, res) {
   try {
@@ -114,6 +113,12 @@ export async function PATCH(req, res) {
         id: product_id,
       },
     });
+
+    // const result = await prisma.product.findMany({
+    //   where: {
+    //     categoryId,
+    //   },
+    // });
     return NextResponse.json({ status: "Find Successfully", data: result });
   } catch (error) {
     console.error("Error occurred:", error);

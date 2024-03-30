@@ -62,7 +62,15 @@ export async function GET(req, res) {
         userId: id,
       },
     });
-    return NextResponse.json({ status: "Create Successfully", data: result });
+
+    if (result.length < 0) {
+      return NextResponse.json({ status: " Data not found" });
+    }
+
+    return NextResponse.json({
+      status: "Data found successfully",
+      data: result,
+    });
   } catch (error) {
     console.error("Error occurred:", error);
     return NextResponse.json({ status: "fail", error: error });
