@@ -63,6 +63,16 @@ export async function GET(req, res) {
       where: {
         userId: id,
       },
+      select: {
+        id: true,
+        brand: true,
+        name: true,
+        categoryId: true,
+        discountPercentage: true,
+        price: true,
+        unit: true,
+        imagurl: true,
+      },
     });
 
     // if (result.length <= 0) {
@@ -113,12 +123,6 @@ export async function PATCH(req, res) {
         id: product_id,
       },
     });
-
-    // const result = await prisma.product.findMany({
-    //   where: {
-    //     categoryId,
-    //   },
-    // });
     return NextResponse.json({ status: "Find Successfully", data: result });
   } catch (error) {
     console.error("Error occurred:", error);

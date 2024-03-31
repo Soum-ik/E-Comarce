@@ -1,20 +1,43 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function AddNewProduct() {
+  const Route = useRouter();
+
   const [form, setForm] = useState({
     name: "",
     price: "",
     unit: "",
     imagurl: "",
-    category_id: "",
+    categoryId: "",
     title: "",
     description: "",
     brand: "",
     discountPercentage: "",
   });
+
+  const [cetagory, setCetagory] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleCategory = (e, field) => {
+    setForm({
+      ...form,
+      [field]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    const getCetagory = async () => {
+      const data = await fetch("/api/category");
+      const res = await data.json();
+      setCetagory(res.data);
+    };
+    getCetagory();
+    return getCetagory;
+  }, []);
 
   const handChanges = (name, value) => {
     setForm((prevState) => ({
@@ -44,23 +67,27 @@ export default function AddNewProduct() {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     const config = { method: "POST", body: JSON.stringify(form) };
-    const res = await fetch(` /api/product`, config);
+    console.log(form);
+    const res = await fetch(`/api/product`, config);
     console.log(res);
     if (res.ok) {
       toast.success("Add Product SuccessFull");
-      // setForm({
-      //   name: "",
-      //   price: "",
-      //   unit: "",
-      //   imagurl: "",
-      //   category_id: "",
-      //   title: "",
-      //   description: "",
-      //   brand: "",
-      //   discountPercentage: "",
-      // });
+      setForm({
+        name: "",
+        price: "",
+        unit: "",
+        imagurl: "",
+        categoryId: "",
+        title: "",
+        description: "",
+        brand: "",
+        discountPercentage: "",
+      });
+      setLoading(false);
+      Route.push("/dashboard/product");
     } else {
       toast.error("Login Unsuccess");
     }
@@ -96,7 +123,7 @@ export default function AddNewProduct() {
                   htmlFor="title"
                   className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
                 >
-                  Short Description
+                  Title
                 </label>
                 <input
                   type="text"
@@ -189,17 +216,22 @@ export default function AddNewProduct() {
                     htmlFor="category"
                     className="block mb-2 text-sm text-gray-600 dark:text-gray-400"
                   >
-                    Category
+                    Categorys
                   </label>
-                  <input
-                    type="text"
-                    name="category"
-                    id="category"
-                    value={form.category_id}
-                    onChange={(e) => handChanges("category_id", e.target.value)}
-                    placeholder="category"
-                    className="w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
-                  />
+
+                  <select
+                    onChange={(e) => handleCategory(e, "categoryId")}
+                    className=" w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-red-100 focus:border-red-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                  >
+                    <option value="" className="select-none">
+                      ALL Categorys
+                    </option>
+                    {cetagory.map((item, index) => (
+                      <option key={index} value={item.name} className="">
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
               <div className=" flex flex-row w-full gap-2">
@@ -244,7 +276,9 @@ export default function AddNewProduct() {
               <div className="mb-6">
                 <button
                   type="submit"
-                  className="w-full px-3 py-4 text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none"
+                  className={`w-full px-3 py-4 text-white ${
+                    loading ? "bg-red-500/50" : "bg-red-500"
+                  }  rounded-md focus:bg-red-600 focus:outline-none`}
                 >
                   Save Product
                 </button>
