@@ -1,32 +1,14 @@
 "use client";
+import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function AddNewProduct({ cetagory, user_id }) {
+export default function EditProductForm({ data, user_id, product_Id }) {
   const Route = useRouter();
-
-  const [form, setForm] = useState({
-    name: "",
-    price: "",
-    unit: "",
-    imagurl: "",
-    categoryId: "",
-    title: "",
-    description: "",
-    brand: "",
-    discountPercentage: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-
-  const handleCategory = (e, field) => {
-    setForm({
-      ...form,
-      [field]: e.target.value,
-    });
-  };
+  const [form, setForm] = useState(data);
+  console.log(form);
 
   const handChanges = (name, value) => {
     setForm((prevState) => ({
@@ -57,27 +39,35 @@ export default function AddNewProduct({ cetagory, user_id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const config = { method: "POST", body: JSON.stringify(form) };
 
-    const res = await fetch(`/api/product?user_id=${user_id}`, config);
-
-    if (res.ok) {
-      toast.success("Add Product SuccessFull");
-      setForm({
-        name: "",
-        price: "",
-        unit: "",
-        imagurl: "",
-        categoryId: "",
-        title: "",
-        description: "",
-        brand: "",
-        discountPercentage: "",
-      });
-      setLoading(false);
-      Route.push("/dashboard/product");
-    } else {
-      toast.error("Login Unsuccess");
+    try {
+      const res = await axios.put(
+        `/api/product?user_id=${user_id}&product_id=${product_Id}`,
+        {
+          ...form,
+        }
+      );
+      console.log(res);
+      if (res.data.status === "Success") {
+        Route.refresh();
+        toast.success("Product Updated Successfully");
+        setForm({
+          name: "",
+          price: "",
+          unit: "",
+          imageUrl: "", // corrected typo
+          title: "",
+          description: "",
+          brand: "",
+          discountPercentage: "",
+        });
+        Route.push("/dashboard/product");
+      } else {
+        toast.error("Update Unsuccessful");
+      }
+    } catch (error) {
+      console.log("Update failed:", error);
+      toast.error("Update Unsuccessful");
     }
   };
 
@@ -198,7 +188,7 @@ export default function AddNewProduct({ cetagory, user_id }) {
                   />
                 </div>
               </div>
-              <div className=" flex flex-row w-full gap-2">
+              {/* <div className=" flex flex-row w-full gap-2">
                 <div className="mb-6 w-full">
                   <label
                     htmlFor="category"
@@ -214,14 +204,14 @@ export default function AddNewProduct({ cetagory, user_id }) {
                     <option value="" className="select-none">
                       ALL Categorys
                     </option>
-                    {cetagory.map((item, index) => (
+                    {_cid.map((item, index) => (
                       <option key={index} value={item.name} className="">
                         {item.name}
                       </option>
                     ))}
                   </select>
                 </div>
-              </div>
+              </div> */}
               <div className=" flex flex-row w-full gap-2">
                 <div className="mb-6 w-full">
                   <label
@@ -264,9 +254,9 @@ export default function AddNewProduct({ cetagory, user_id }) {
               <div className="mb-6">
                 <button
                   type="submit"
-                  className={`w-full px-3 py-4 text-white ${
-                    loading ? "bg-red-500/50" : "bg-red-500"
-                  }  rounded-md focus:bg-red-600 focus:outline-none`}
+                  className={`w-full px-3 py-4 text-white 
+                      bg-red-500
+                    rounded-md focus:bg-red-600 focus:outline-none`}
                 >
                   Save Product
                 </button>
@@ -278,5 +268,3 @@ export default function AddNewProduct({ cetagory, user_id }) {
     </div>
   );
 }
-
-// schema

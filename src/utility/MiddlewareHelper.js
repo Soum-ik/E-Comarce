@@ -24,9 +24,6 @@ export default async function CheckMiddleware(req) {
     });
   } catch (error) {
     console.error("Middleware Error:", error);
-    return NextResponse.json(
-      { status: "error", message: error.message },
-      { status: 401 }
-    );
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 }

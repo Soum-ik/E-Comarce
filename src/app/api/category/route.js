@@ -53,13 +53,12 @@ export async function PUT(req, res) {
 export async function GET(req, res) {
   try {
     const prisma = new PrismaClient();
-    let headerList = headers();
-
-    let id = headerList.get("id");
+    let { searchParams } = new URL(req.url);
+    let user_id = searchParams.get("user_id");
 
     const result = await prisma.category.findMany({
       where: {
-        userId: id,
+        userId: user_id,
       },
     });
 

@@ -1,10 +1,12 @@
-import AddProduct from "@/components/Product/AddProduct";
-import React from "react";
+import DisplayProduct from "@/components/Product/DisplayProduct";
+import { getProduct, header_info } from "@/utility/getData";
 
-function page() {
+async function page() {
+  const { data } = await getProduct();
+  const user_id = await header_info();
   return (
     <div className=" container my-10">
-      <AddProduct />
+      {<DisplayProduct data={data} user_id={user_id} />}
     </div>
   );
 }

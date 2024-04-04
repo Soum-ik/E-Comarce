@@ -2,37 +2,33 @@
 
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import PopUpDeleteComponent from "../pop-up/PopUpDelete";
+import PopUpDeleteProduct from "../pop-up/PopUpDelete";
+import Link from "next/link";
 import { BsPlusCircle } from "react-icons/bs";
 
-function AddProduct() {
+function DisplayProduct({ data, user_id }) {
   const route = useRouter();
-  const [datas, setDatas] = useState([]);
+  const [datas, setDatas] = useState(data);
+
   // common product id
   const [productId, setProductId] = useState(null);
 
   // this pop up for product delete
   const [popUpDelete, setPopUpDelete] = useState(false);
 
+  // click for delete product
   const clickDeleteBtn = (id) => {
     setProductId(id);
     setPopUpDelete(!popUpDelete);
   };
 
+  // click for edit product
+
   function handleNewProduct() {
     route.push("/dashboard/product/new");
   }
-
-  useEffect(() => {
-    async function getData() {
-      const data = await fetch("/api/product");
-      const res = await data.json();
-      setDatas(res.data);
-    }
-    getData();
-  }, []);
 
   const handleDeleteFun = async (id) => {
     toast.loading("product deleteing");
@@ -41,13 +37,26 @@ function AddProduct() {
       headers: { "Content-Type": "application/json" },
     };
 
-    const data = await fetch(`/api/product?product_id=${id}`, config);
+    const data = await fetch(
+      `/api/product?product_id=${id}&user_id=${user_id}`,
+      config
+    );
     const response = await data.json();
-    if (response.status === "Delete Successfully") {
-      toast.success("Delete product Successfully");
-      window.location.reload();
-    } else {
-      toast.error("Delete Unsuccessfully");
+
+    toast.loading("loading...");
+    try {
+      if (response.status === "Delete Successfully") {
+        toast.success("Delete product Successfully");
+        setPopUpDelete(!popUpDelete);
+        window.location.reload();
+      } else {
+        throw new Error("Delete Unsuccessful: Invalid response status");
+      }
+    } catch (error) {
+      // Handle the error
+      toast.error(error.message);
+    } finally {
+      toast.dismiss(); // Dismiss any existing toast notifications
     }
   };
 
@@ -85,7 +94,7 @@ function AddProduct() {
               <th className="text-left">Actions</th>
             </tr>
           </thead>
-          {datas.map((data, item) => (
+          {datas?.map((data, item) => (
             <tbody
               key={item}
               className=" md:table-row-group mt-10 ease-in-out delay-500"
@@ -111,9 +120,12 @@ function AddProduct() {
                   {data.discountPercentage}
                 </td>
                 <td className="  text-left space-x-2 ">
-                  <button className=" font-medium py-1 px-2 border   rounded">
+                  <Link
+                    href={`/dashboard/product/${data.id}`}
+                    className=" font-medium py-1 px-2 border   rounded"
+                  >
                     Edit
-                  </button>
+                  </Link>
                   <button
                     onClick={() => clickDeleteBtn(data.id)}
                     className=" font-medium py-1 px-2 border   rounded"
@@ -125,18 +137,20 @@ function AddProduct() {
             </tbody>
           ))}
 
-          {/* popup screen */}
+          {/* popup screen for delete */}
           {popUpDelete && (
-            <PopUpDeleteComponent
+            <PopUpDeleteProduct
               id={productId}
               deleteFun={handleDeleteFun}
-              onClose={() => setPopUp(!popUp)}
+              onClose={() => setPopUpDelete(!popUpDelete)}
             />
           )}
+
+          {/* popup screen for edit  */}
         </table>
       </>
     </section>
   );
 }
 
-export default AddProduct;
+export default DisplayProduct;
