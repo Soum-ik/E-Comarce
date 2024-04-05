@@ -17,7 +17,6 @@ export default function MainNav() {
 
   const onClose = () => {
     setPopupOpen(false);
-    console.log("pop up off");
   };
 
   return (
@@ -46,7 +45,10 @@ export default function MainNav() {
             className="flex items-center justify-center gap-2"
             href={"/cart"}
           >
-            <MdOutlineShoppingCart />
+            <div className="relative ">
+              <MdOutlineShoppingCart />
+              <span className=" absolute text-sm -top-3 bg-black text-white px-[3px] rounded-full  right-3"></span>
+            </div>
             Cart
           </Link>
           <Link
@@ -63,7 +65,9 @@ export default function MainNav() {
             <VscAccount />
             Account
           </button>
-          <div className=" absolute right-36 shadow-2xl backdrop-blur-sm top-28">{popupOpen && <Popup onClose={onClose} />}</div>
+          <div className=" absolute right-36 shadow-2xl backdrop-blur-sm top-28">
+            {popupOpen && <Popup onClose={onClose} />}
+          </div>
         </div>
       </div>
       {!open && (

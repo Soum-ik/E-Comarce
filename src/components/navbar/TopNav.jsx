@@ -11,12 +11,12 @@ export default function TopNav() {
             <Link href="/" className="md:mr-5 mr-3 hover:text-gray-900">
               Home
             </Link>
-            <Link
+            {/* <Link
               href="/category"
               className=" md:mr-5 mr-3 hover:text-gray-900"
             >
               Category
-            </Link>
+            </Link> */}
             <Link
               href="/products"
               className=" md:mr-5 mr-3 hover:text-gray-900"

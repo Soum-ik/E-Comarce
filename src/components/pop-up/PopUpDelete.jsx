@@ -24,6 +24,7 @@ export default function PopUpDelete({ onClose, deleteFun, id }) {
           </button>
 
           <button
+            // disabled={}
             onClick={onClose}
             type="button"
             className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"

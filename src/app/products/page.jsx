@@ -1,23 +1,25 @@
-import Link from "next/link";
+import { getProductClinet } from "@/utility/getData";
 import React from "react";
 
-function Page() {
-  let res = async () => {
-    let data = await fetch("/api/product", {
-      cache: "force-cache",
-    });
-    let info = data.json();
-  };
-  res();
-  console.log(info);
-
+async function Page() {
+  const { data } = await getProductClinet();
+  
   return (
-    <div className="container my-10">
-      {users.map((userId) => (
-        <Link key={userId} href={`/products/${userId}`}>
-          <p>User ID: {userId}</p>
-        </Link>
-      ))}
+    <div className=" container ">
+      <h1 className=" text-[30px]"> All Product </h1>
+      <div className=" mb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {data.map((item, index) => (
+          <div key={index}>
+            <Card
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              image={item.imagurl}
+              title={item.title}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

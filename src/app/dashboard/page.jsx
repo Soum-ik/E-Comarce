@@ -38,11 +38,13 @@ async function Page() {
         </div>
         <div className=" flex flex-1 items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1 className="text-xl">Product</h1>
-          <p className=" text-lg mt-2">{data.length}</p>
+          <p className=" text-lg mt-2">{data.length || "loading...."}</p>
         </div>
         <div className=" flex flex-1 flex-col items-center justify-center bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1 className="text-xl">Categoris</h1>
-          <p className=" text-lg mt-2">{total_category.data.length}</p>
+          <p className=" text-lg mt-2">
+            {total_category.data.length || "loading...."}
+          </p>
         </div>
       </div>
     </div>

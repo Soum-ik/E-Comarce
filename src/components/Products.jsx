@@ -1,35 +1,24 @@
-"use client";
+import { getProductClinet } from "@/utility/getData";
 import Card from "./card";
-import { useEffect, useState } from "react";
 
-function Products() {
-  const [data, setData] = useState([]);
+async function Products() {
+  const { data } = await getProductClinet();
 
-  useEffect(() => {
-    const res = async () => {
-      const data = await fetch("/api/product", {
-        cache: "force-cache",
-      });
-      // const res = await data.json();
-      console.log(res);
-      setData(res.data);
-    };
-
-    res();
-  }, []);
-  console.log(data);
   return (
     <div className=" container ">
       <h1 className=" text-[30px]"> Popular Product </h1>
-      <div className=" my-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {/* {data.map((item, index) => (
-          <Card
-            key={index}
-            name={item.title}
-            price={item.price}
-            image={item.thumbnail}
-          />
-        ))} */}
+      <div className=" mb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {data.slice(0, 6).map((item, index) => (
+          <div key={index}>
+            <Card
+              id={item.id}
+              name={item.name}
+              price={item.price}
+              image={item.imagurl}
+              title={item.title}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

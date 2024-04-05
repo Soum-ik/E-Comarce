@@ -1,5 +1,12 @@
 import { headers } from "next/headers";
 
+// customer product
+export const getProductClinet = async () => {
+  const data = await fetch("http://localhost:3000/api/customer/product");
+  const response = await data.json();
+  return response;
+};
+
 // for product ............................
 export const getProduct = async () => {
   const headerlist = headers();
