@@ -16,6 +16,7 @@ async function Products() {
               price={item.price}
               image={item.imagurl}
               title={item.title}
+              discount={item.discountPercentage}
             />
           </div>
         ))}

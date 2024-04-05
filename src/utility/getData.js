@@ -2,7 +2,9 @@ import { headers } from "next/headers";
 
 // customer product
 export const getProductClinet = async () => {
-  const data = await fetch("http://localhost:3000/api/customer/product");
+  const data = await fetch("http://localhost:3000/api/customer/product", {
+    cache: "no-cache",
+  });
   const response = await data.json();
   return response;
 };

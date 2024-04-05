@@ -62,6 +62,7 @@ export default function EditProductForm({ data, user_id, product_Id }) {
           discountPercentage: "",
         });
         Route.push("/dashboard/product");
+        window.location.reload();
       } else {
         toast.error("Update Unsuccessful");
       }
