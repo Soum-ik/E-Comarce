@@ -5,32 +5,33 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 export default function PopUpDelete({ onClose, deleteFun, id }) {
   const handleDeleteFun = () => {
     deleteFun(id);
-    console.log(deleteFun);
   };
 
   return (
     <div className="fixed delay-500 ease-in-out bg-opacity-5 inset-0 bg-black backdrop-blur-sm shadow-lg flex justify-center items-center">
-      <div className="bg-white relative flex items-center px-10 justify-center flex-col py-10 min-w-[300px] rounded-2xl">
-        <div className=" w-full flex  items-center justify-center  mt-3 ">
-          <h1 className=" text-2xl">Do you want delete?</h1>
-        </div>
-        <div className=" flex gap-3 mt-6">
+      <div className="rounded-lg relative bg-white p-10 shadow-2xl">
+        <h2 className="text-lg font-bold">
+          Are you sure you want to delete that product?
+        </h2>
+
+        <div className="mt-4 flex gap-2">
           <button
             onClick={handleDeleteFun}
-            className=" bg-neutral-700 px-4 py-2  text-neutral-200 rounded-lg "
+            type="button"
+            className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
           >
-            {" "}
-            Yes
+            Yes, I'm sure
           </button>
+
           <button
             onClick={onClose}
-            className=" bg-neutral-700 px-4 py-2  text-neutral-200 rounded-lg"
+            type="button"
+            className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
           >
-            {" "}
-            No
+            No, go back
           </button>
         </div>
-        <div onClick={onClose} className="absolute top-3 right-3">
+        <div onClick={onClose} className="absolute top-3 right-3 my-">
           <IoCloseCircleOutline size={25} />
         </div>
       </div>

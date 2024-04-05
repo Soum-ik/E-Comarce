@@ -6,7 +6,7 @@ async function page() {
   const user_id = await header_info();
   return (
     <div className=" container my-10">
-      {<DisplayProduct data={data} user_id={user_id} />}
+      <DisplayProduct data={data} user_id={user_id} />
     </div>
   );
 }

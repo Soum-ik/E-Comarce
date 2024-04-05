@@ -1,7 +1,11 @@
+import { getCetagory, getProduct, header_info } from "@/utility/getData";
 import Link from "next/link";
 
 async function Page() {
-  
+  const user_id = await header_info();
+  const { data } = await getProduct();
+  const total_category = await getCetagory();
+  console.log(total_category, data, user_id);
   return (
     <div className=" container   ">
       {/* introducation */}
@@ -28,17 +32,17 @@ async function Page() {
       </div>
       {/* jsut view */}
       <div className="  gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
-        <div className=" flex flex-1  flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
-          <h1>Total Profit</h1>
-          <p></p>
+        <div className=" flex flex-1 items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
+          <h1 className="text-xl">Total Profit</h1>
+          <p className=" text-lg mt-2 ">{`200K`}</p>
         </div>
-        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
-          <h1>Product</h1>
-          <p></p>
+        <div className=" flex flex-1 items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
+          <h1 className="text-xl">Product</h1>
+          <p className=" text-lg mt-2">{data.length}</p>
         </div>
-        <div className=" flex flex-1 flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-40 md:px-32 sm:px-20 px-8 py-5 rounded-md">
-          <h1>Categoris</h1>
-          <p></p>
+        <div className=" flex flex-1 flex-col items-center justify-center bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
+          <h1 className="text-xl">Categoris</h1>
+          <p className=" text-lg mt-2">{total_category.data.length}</p>
         </div>
       </div>
     </div>

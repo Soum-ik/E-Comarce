@@ -115,10 +115,10 @@ function DisplayProduct({ data, user_id }) {
                   {data.categoryId}
                 </td>
                 <td className=" text-left  md:table-cell ">{data.price}</td>
-                <td className=" text-left  md:table-cell ">{data.unit}</td>
                 <td className=" text-left  md:table-cell ">
                   {data.discountPercentage}
                 </td>
+                <td className=" text-left  md:table-cell ">{data.unit}</td>
                 <td className="  text-left space-x-2 ">
                   <Link
                     href={`/dashboard/product/${data.id}`}

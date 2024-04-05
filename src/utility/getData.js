@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 
+// for product ............................
 export const getProduct = async () => {
   const headerlist = headers();
   const id = headerlist.get("id");
@@ -18,14 +19,26 @@ export const getSingleProduct = async (product_Id) => {
   return data.json();
 };
 
+// for cetagory....................
 export const getCetagory = async () => {
   const headerlist = headers();
   const id = headerlist.get("id");
   const data = await fetch(`http://localhost:3000/api/category?user_id=${id}`);
   return data.json();
 };
+export const getSingleCategory = async (category_id, user_id) => {
+  const config = {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+  };
+  const data = await fetch(
+    `http://localhost:3000/api/category?user_id=${user_id}&category_id=${category_id}`,
+    config
+  );
+  return data.json();
+};
 
-// .....................
+// .....................  every single request
 export const header_info = async () => {
   const headerlist = headers();
   const user_id = headerlist.get("id");
