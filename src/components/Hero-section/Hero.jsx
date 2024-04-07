@@ -31,6 +31,7 @@ export default function Hero() {
                 alt="hero imagee"
                 width={400}
                 height={700}
+                // style={}
               />
             </div>
           </div>

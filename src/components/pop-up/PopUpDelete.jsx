@@ -20,7 +20,7 @@ export default function PopUpDelete({ onClose, deleteFun, id }) {
             type="button"
             className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
           >
-            Yes, I'm sure
+            {` Yes, I'm sure`}
           </button>
 
           <button

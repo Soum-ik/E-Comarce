@@ -1,3 +1,4 @@
+import Summary from "@/components/checkout/summary";
 import Footer from "@/components/footer/Footer";
 import MainNav from "@/components/navbar/MainNav";
 import TopNav from "@/components/navbar/TopNav";

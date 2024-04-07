@@ -8,7 +8,7 @@ import PopUpDelete from "../pop-up/PopUpDelete";
 import { BsPlusCircle } from "react-icons/bs";
 import PopUpNewCategory from "../pop-up/PopUpNewCategory";
 import PopUpEditCategory from "../pop-up/PopUpEditCategory";
-
+import axios from "axios";
 function DisplayCetagory({ data, user_id }) {
   const route = useRouter();
   const [popUpDelete, setPopUpDelete] = useState(false);
@@ -20,22 +20,15 @@ function DisplayCetagory({ data, user_id }) {
   useEffect(() => {
     const getSingleCategory = async () => {
       if (cetagoryId) {
-        const config = {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-        };
-        const data = await fetch(
-          `http://localhost:3000/api/category?user_id=${user_id}&category_id=${cetagoryId}`,
-          config
+        const data = await axios.patch(
+          `http://localhost:3000/api/category?user_id=${user_id}&category_id=${cetagoryId}`
         );
         const res = await data.json();
         setSingleCetagory(res.data.name);
       }
     };
     getSingleCategory();
-  }, [cetagoryId]);
-
-  console.log(singleCetagory);
+  }, [cetagoryId, user_id]);
 
   const handleNewCategory = () => {
     setPopUpCreateCategory(!popUpCreateCategory);

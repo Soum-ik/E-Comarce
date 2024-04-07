@@ -47,9 +47,8 @@ export default function EditProductForm({ data, user_id, product_Id }) {
           ...form,
         }
       );
-      console.log(res);
+
       if (res.data.status === "Success") {
-        Route.refresh();
         toast.success("Product Updated Successfully");
         setForm({
           name: "",
@@ -61,14 +60,17 @@ export default function EditProductForm({ data, user_id, product_Id }) {
           brand: "",
           discountPercentage: "",
         });
-        Route.push("/dashboard/product");
-        window.location.reload();
+        Route.replace("/dashboard/product");
+         
       } else {
         toast.error("Update Unsuccessful");
       }
     } catch (error) {
       console.log("Update failed:", error);
       toast.error("Update Unsuccessful");
+    } finally {
+      window.location.reload();
+      Route.replace("/dashboard/product");
     }
   };
 

@@ -9,6 +9,17 @@ export const getProductClinet = async () => {
   return response;
 };
 
+export const getSingleProductClient = async (product_Id) => {
+  const config = { method: "PATCH" };
+
+  const data = await fetch(
+    `http://localhost:3000/api/customer/product?product_id=${product_Id}`,
+    config
+  );
+  const response = await data.json();
+  return response;
+};
+
 // for product ............................
 export const getProduct = async () => {
   const headerlist = headers();

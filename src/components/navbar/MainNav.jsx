@@ -7,14 +7,22 @@ import { VscAccount } from "react-icons/vsc";
 import { CiHeart, CiMenuFries } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
+import toast, { Toaster } from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Popup from "../PopUp";
 
 export default function MainNav() {
   const [open, setOpen] = useState(true);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    const cartItems = window.localStorage.getItem("cartItems");
+    if (cartItems) {
+      setCart(JSON.parse(cartItems));
+    }
+  }, []);
   const onClose = () => {
     setPopupOpen(false);
   };
@@ -47,7 +55,9 @@ export default function MainNav() {
           >
             <div className="relative ">
               <MdOutlineShoppingCart />
-              <span className=" absolute text-sm -top-3 bg-black text-white px-[3px] rounded-full  right-3"></span>
+              <span className=" absolute text-sm -top-3 bg-black/30 text-white px-[5px] rounded-full  right-3">
+                {cart.length}
+              </span>
             </div>
             Cart
           </Link>

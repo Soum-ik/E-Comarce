@@ -8,7 +8,7 @@ function PageHeader() {
   let routeArray = pathname.split("/");
 
   return (
-    <div className=" bg-red-500  py-2 my-4 hidden md:block ">
+    <div className=" bg-red-500  py-4 my-4 hidden md:block ">
       <div className="container px-12 flex  items-center justify-between">
         <div className="text-base font-medium text-white capitalize">
           {routeArray}
@@ -17,7 +17,7 @@ function PageHeader() {
           <ol className="flex items-center justify-center uppercase ">
             <li className=" items-center">
               <Link href="/" className="  items-center   font-medium  ">
-                {"Home  /"}
+                {"Home/"}
               </Link>
             </li>
             <Link className=" " href={routeArray}>
