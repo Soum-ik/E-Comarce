@@ -1,10 +1,14 @@
 import Billing from "@/components/checkout/Billing";
 import Summary from "@/components/checkout/summary";
+import { headers } from "next/headers";
 import React from "react";
 
 function Page({ searchParams }) {
   let { total_price, cart_items } = searchParams;
   let _cartItem = JSON.parse(cart_items);
+
+  const header = headers();
+  console.log(header, "header list");
 
   return (
     <div className="  container my-10 ">

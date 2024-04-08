@@ -6,7 +6,7 @@ export async function POST(req) {
   try {
     const prisma = new PrismaClient();
     const reqBody = await req.json();
-    const result = await prisma.users.findUnique({
+    const result = await prisma.customers.findUnique({
       where: reqBody,
     });
     if (!result) {
@@ -15,13 +15,14 @@ export async function POST(req) {
       let token = await CreateToken(result["email"], result["id"]);
 
       const experiData = new Date(Date.now() + 24 * 60 * 60 * 3600);
-      const cookieString = `token=${token}; expires=${experiData.toUTCString()}; path=/ `;
+      const cookieString = `usertoken=${token}; expires=${experiData.toUTCString()}; path=/ `;
       return NextResponse.json(
         { status: "success", data: token },
         { status: 200, headers: { "set-cookie": cookieString } }
       );
     }
   } catch (error) {
+    console.log(error, "this is api error");
     return NextResponse.json({ status: "fail" });
   }
 }

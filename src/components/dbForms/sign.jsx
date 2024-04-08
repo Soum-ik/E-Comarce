@@ -19,11 +19,11 @@ export default function Sign() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = { method: "POST", body: JSON.stringify(form) };
-    const res = await fetch(` /api/User/login`, config);
+    const res = await fetch(`/api/User/login`, config);
     console.log(res);
     if (res.ok) {
       toast.success("Login SuccessFull");
-      router.replace("/cart");
+      router.replace("/dashboard");
     } else {
       toast.error("Login Unsuccess");
     }

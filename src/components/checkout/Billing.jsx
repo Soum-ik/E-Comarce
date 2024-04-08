@@ -1,10 +1,28 @@
 import React from "react";
-
-function Billing() {
+import bkask from "../../../public/images/payment-method/bkash.jpg";
+import roket from "../../../public/images/payment-method/roket.jpg";
+import nogod from "../../../public/images/payment-method/nogod.jpg";
+import Image from "next/image";
+function Billing({data}) {
+  const images = [bkask, roket, nogod];
   return (
     <>
       <div className=" border p-3 mb-5 rounded-md">
         <h1>Payment Method</h1>
+        <div className=" flex gap-10 my-5">
+          {images.map((image, index) => (
+            <Image
+              alt={image}
+              src={image}
+              key={index}
+              placeholder="blur"
+              loading="lazy"
+              height={300}
+              width={100}
+              className="mix-blend-normal"
+            />
+          ))}
+        </div>
       </div>
       <div className="border p-3 rounded-md ">
         <h1 className=" text-lg font-medium">Billing Details </h1>
