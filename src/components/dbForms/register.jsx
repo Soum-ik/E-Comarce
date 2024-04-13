@@ -29,7 +29,7 @@ export default function Register() {
     console.log(res);
     if (res.ok) {
       toast.success("Account Successfull Created");
-      Route.replace("/account");
+      Route.replace("/login");
     } else {
       toast.error(" Create Unsuccess");
     }

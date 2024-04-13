@@ -61,6 +61,18 @@ export const getSingleCategory = async (category_id, user_id) => {
 // .....................  every single request
 export const header_info = async () => {
   const headerlist = headers();
+
   const user_id = headerlist.get("id");
+  console.log(user_id, "user id form mid");
   return user_id;
+};
+
+// ................ customer information.......................
+
+export const getSingelCustomer = async (user_id) => {
+  const data = await fetch(
+    `http://localhost:3000/api/customer/users/login?user_id=${user_id}`
+  );
+  const response = await data.json();
+  return response;
 };

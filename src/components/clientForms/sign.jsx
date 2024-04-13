@@ -24,9 +24,9 @@ export default function LoginForm() {
     try {
       const res = await fetch(`/api/customer/users/login`, config);
       const data = await res.json();
-      console.log(data, "data");
-      if (res.status !== "fail") {
-        toast.success("Account Successfull Created");
+      console.log(data, "data from cliebt fromt component");
+      if (data.status !== "fail") {
+        toast.success("log in Successfully");
         Route.replace("/cart");
       }
     } catch (error) {
@@ -81,7 +81,7 @@ export default function LoginForm() {
         </button>
 
         <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-          I don't have an account?
+          {`I don't have an account?`}
           <Link href="/auth/register" className="text-gray-700 underline">
             Sign Up
           </Link>

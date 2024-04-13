@@ -24,20 +24,20 @@ export async function CheckMiddlewareOnDashboard(req) {
     });
   } catch (error) {
     console.error("Middleware Error:", error);
-    return NextResponse.redirect(new URL("/", req.url));
+    return NextResponse.redirect(new URL("/login", req.url));
   }
 }
 
 export async function CheckMiddlewareForCustomer(req) {
   try {
     const token = req.cookies.get("usertoken");
-    console.log("user token", token);
+
     if (!token) {
       throw new Error("Token not found in cookies");
     }
 
     const payload = await VerifyToken(token["value"]);
-
+    console.log(payload);
     if (!payload.email || !payload.id) {
       throw new Error("Invalid token payload");
     }
@@ -54,6 +54,5 @@ export async function CheckMiddlewareForCustomer(req) {
     return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 }
-
 
 // to set up innnvoicce then api then put storeuser id, product id then boom im done

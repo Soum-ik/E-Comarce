@@ -1,15 +1,38 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import bkask from "../../../public/images/payment-method/bkash.jpg";
 import roket from "../../../public/images/payment-method/roket.jpg";
 import nogod from "../../../public/images/payment-method/nogod.jpg";
 import Image from "next/image";
-function Billing({data}) {
+function Billing({ data, total, _cartItem }) {
   const images = [bkask, roket, nogod];
+  const [form, setForm] = useState(data);
+  const handChanges = (name, value) => {
+    setForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const [postCode, setPostCode] = useState("");
+  const [road, setroad] = useState("");
+  const [city, setcity] = useState("");
+  const [country, setcountry] = useState("");
+  const handleCity = (event) => {
+    setcity(event.target.value);
+  };
+  const handleCountry = (event) => {
+    setcountry(event.target.value);
+  };
+  const handleRoad = (event) => {
+    setroad(event.target.value);
+  };
+
   return (
     <>
       <div className=" border p-3 mb-5 rounded-md">
         <h1>Payment Method</h1>
-        <div className=" flex gap-10 my-5">
+        <div className=" group relative flex gap-10 my-5 ">
           {images.map((image, index) => (
             <Image
               alt={image}
@@ -22,6 +45,9 @@ function Billing({data}) {
               className="mix-blend-normal"
             />
           ))}
+          <h1 className=" text-2xl font-bold group-hover:block hidden">
+            Not Avaiable now
+          </h1>
         </div>
       </div>
       <div className="border p-3 rounded-md ">
@@ -37,8 +63,9 @@ function Billing({data}) {
             </label>
 
             <input
-              type="email"
-              id="UserEmail"
+              type="text"
+              value={form.firstName}
+              onChange={(e) => handChanges("firstName", e.target.value)}
               placeholder="Enter Your First Name"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
             />
@@ -53,8 +80,9 @@ function Billing({data}) {
             </label>
 
             <input
-              type="email"
-              id="UserEmail"
+              type="text"
+              value={form.lastName}
+              onChange={(e) => handChanges("lastName", e.target.value)}
               placeholder="Enter Your last  Name"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
             />
@@ -70,6 +98,8 @@ function Billing({data}) {
 
             <input
               type="email"
+              value={form.email}
+              onChange={(e) => handChanges("email", e.target.value)}
               id="UserEmail"
               placeholder="john@rhcp.com"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
@@ -82,10 +112,12 @@ function Billing({data}) {
               className=" mb-2 block text-xs font-medium text-gray-700"
             >
               {" "}
-              Region State{" "}
+              Road{" "}
             </label>
 
             <select
+              value={road}
+              onChange={handleRoad}
               name="HeadlineAct"
               id="HeadlineAct"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
@@ -93,26 +125,11 @@ function Billing({data}) {
               <option className=" border" value="">
                 Please select
               </option>
-              <option className=" border" value="JM">
-                John Mayer
+              <option className=" border mt-20" value="MM">
+                Modina Market
               </option>
-              <option className=" border" value="SRV">
-                Stevie Ray Vaughn
-              </option>
-              <option className=" border" value="JH">
-                Jimi Hendrix
-              </option>
-              <option className=" border" value="BBK">
-                B.B King
-              </option>
-              <option className=" border" value="AK">
-                Albert King
-              </option>
-              <option className=" border" value="BG">
-                Buddy Guy
-              </option>
-              <option className=" border" value="EC">
-                Eric Clapton
+              <option className=" border" value="JMP">
+                Jitu Miya Point
               </option>
             </select>
           </div>
@@ -126,33 +143,26 @@ function Billing({data}) {
             </label>
 
             <select
+              value={city}
+              onChange={handleCity}
               name="HeadlineAct"
               id="HeadlineAct"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
             >
               <option className=" border" value="">
-                Please select
+                Select City
               </option>
-              <option className=" border" value="JM">
-                John Mayer
+              <option className=" border" value="Sylhet">
+                Sylhet
               </option>
-              <option className=" border" value="SRV">
-                Stevie Ray Vaughn
+              <option className=" border" value="Dhaka">
+                Dhaka
               </option>
-              <option className=" border" value="JH">
-                Jimi Hendrix
+              <option className=" border" value="Sreemangol">
+                Sreemangol
               </option>
-              <option className=" border" value="BBK">
-                B.B King
-              </option>
-              <option className=" border" value="AK">
-                Albert King
-              </option>
-              <option className=" border" value="BG">
-                Buddy Guy
-              </option>
-              <option className=" border" value="EC">
-                Eric Clapton
+              <option className=" border" value="Moulovibazar">
+                Moulovibazar
               </option>
             </select>
           </div>
@@ -166,6 +176,8 @@ function Billing({data}) {
             </label>
 
             <input
+              value={postCode}
+              onChange={(e) => setPostCode(e.target.value)}
               type="number"
               id="UserEmail"
               placeholder="000122"
@@ -182,6 +194,8 @@ function Billing({data}) {
             </label>
 
             <select
+              value={country}
+              onChange={handleCountry}
               name="HeadlineAct"
               id="HeadlineAct"
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm outline-none px-2 border py-2 sm:text-sm"
@@ -189,26 +203,14 @@ function Billing({data}) {
               <option className=" border" value="">
                 Please select
               </option>
-              <option className=" border" value="JM">
-                John Mayer
+              <option className=" border" value="LONDON">
+                LONDON
               </option>
-              <option className=" border" value="SRV">
-                Stevie Ray Vaughn
+              <option className=" border" value="BANGLADESH">
+                BANGLADESH
               </option>
-              <option className=" border" value="JH">
-                Jimi Hendrix
-              </option>
-              <option className=" border" value="BBK">
-                B.B King
-              </option>
-              <option className=" border" value="AK">
-                Albert King
-              </option>
-              <option className=" border" value="BG">
-                Buddy Guy
-              </option>
-              <option className=" border" value="EC">
-                Eric Clapton
+              <option className=" border" value="INDIA">
+                INDIA
               </option>
             </select>
           </div>

@@ -5,7 +5,6 @@ export async function POST(req, res) {
   try {
     const prisma = new PrismaClient();
     let reqbody = await req.json();
-    reqbody.otp = "0";
     const result = await prisma.customers.create({ data: reqbody });
     return NextResponse.json({ status: "Success", data: result });
   } catch (error) {

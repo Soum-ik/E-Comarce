@@ -8,6 +8,11 @@ export async function middleware(req, res) {
     return CheckMiddlewareOnDashboard(req);
   }
   if (req.nextUrl.pathname.startsWith("/cart")) {
+    console.log("from cart");
     return CheckMiddlewareForCustomer(req);
-  } 
+  }
+  if (req.nextUrl.pathname.startsWith("/checkout")) {
+    console.log("from checkout");
+    return CheckMiddlewareForCustomer(req);
+  }
 }
