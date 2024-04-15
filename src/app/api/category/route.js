@@ -75,7 +75,7 @@ export async function DELETE(req, res) {
     let { searchParams } = new URL(req.url);
     let category_id = searchParams.get("category_id");
     let user_id = searchParams.get("user_id");
-    console.log(category_id, user_id);
+ 
     const result = await prisma.category.delete({
       where: {
         id: category_id,

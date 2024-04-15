@@ -14,7 +14,7 @@ export async function POST(req) {
     console.log(error);
     return NextResponse.json({ status: "fail" });
   }
-}
+} 
 
 export async function GET(req, res) {
   try {

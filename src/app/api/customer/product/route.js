@@ -5,7 +5,7 @@ export async function GET(req, res) {
   try {
     const prisma = new PrismaClient();
     const result = await prisma.product.findMany();
-    console.log(result);
+ 
     return NextResponse.json({ status: "Success", data: result });
   } catch (error) {
     console.error("Error occurred:", error);

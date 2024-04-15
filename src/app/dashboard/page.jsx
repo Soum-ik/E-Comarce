@@ -4,7 +4,8 @@ import Link from "next/link";
 async function Page() {
   const user_id = await header_info();
   const { data } = await getProduct();
-  const total_category = await getCetagory(); 
+  const total_category = await getCetagory();
+
   return (
     <div className=" container   ">
       {/* introducation */}

@@ -1,16 +1,15 @@
-"use server"
+"use server";
 import { headers } from "next/headers";
 // Assuming you're using process.env.URL to access the URL
 
 let apiUrl;
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   apiUrl = process.env.URL_PROD;
 } else {
-    apiUrl = process.env.URL;
+  apiUrl = process.env.URL;
 }
-console.log({apiUrl})
+console.log({ apiUrl });
 // Now `apiUrl` will contain the appropriate URL based on the environment
-
 
 // customer product
 export const getProductClinet = async () => {
@@ -75,16 +74,13 @@ export const header_info = async () => {
   const headerlist = headers();
 
   const user_id = headerlist.get("id");
-  console.log(user_id, "user id form mid");
   return user_id;
 };
 
 // ................ customer information.......................
 
 export const getSingelCustomer = async (user_id) => {
-  const data = await fetch(
-    `${apiUrl}/customer/users/login?user_id=${user_id}`
-  );
+  const data = await fetch(`${apiUrl}/customer/users/login?user_id=${user_id}`);
   const response = await data.json();
   return response;
 };
