@@ -1,11 +1,10 @@
-import { getCetagory, getProduct, header_info } from "@/utility/getData";
+// import { getCetagory, getProduct, header_info } from "@/utility/getData";
 import Link from "next/link";
 
 async function Page() {
-  const user_id = await header_info();
-  const { data } = await getProduct();
-  const total_category = await getCetagory();
-  console.log(total_category, data, user_id);
+  // const user_id = await header_info();
+  // const { data } = await getProduct();
+  // const total_category = await getCetagory(); 
   return (
     <div className=" container   ">
       {/* introducation */}
@@ -31,7 +30,7 @@ async function Page() {
         </div>
       </div>
       {/* jsut view */}
-      <div className="  gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
+      {/* <div className="  gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
         <div className=" flex flex-1 items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-32 md:px-32 sm:px-20 px-8 py-5 rounded-md">
           <h1 className="text-xl">Total Profit</h1>
           <p className=" text-lg mt-2 ">{`200K`}</p>
@@ -46,7 +45,7 @@ async function Page() {
             {total_category.data.length || "loading...."}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
