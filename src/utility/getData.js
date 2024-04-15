@@ -10,6 +10,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 console.log({apiUrl})
 // Now `apiUrl` will contain the appropriate URL based on the environment
+
+
 // customer product
 export const getProductClinet = async () => {
   const data = await fetch(`${apiUrl}/customer/product`, {
