@@ -7,16 +7,16 @@ import Image from "next/image";
 import Order from "./order";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-function Billing({   }) {
+function Billing({ data, total, discount, cartItem }) {
   const images = [bkask, roket, nogod];
 
   const { id } = data;
   const customersId = id;
 
   // find user_id from cartitem
-  const cartItem = cartItem.map((item) => item.userId);
+  let _cartItem = cartItem.map((item) => item.userId);
 
-  const qnt = cartItem.length.toString();
+  const qnt = _cartItem.length.toString();
 
   const [loading, setLoading] = useState(false);
 
@@ -53,6 +53,7 @@ function Billing({   }) {
       toast.error("Fill uncomplete");
       return;
     }
+    console.log("before sending request");
     const { data } = await axios.post(
       `/api/invoice/?customersId=${customersId}`,
       {
@@ -69,7 +70,7 @@ function Billing({   }) {
         discount,
       }
     );
-
+    console.log(data);
     if (data.status === "fail") {
       toast.error("Order have an problem");
       setLoading(false);
