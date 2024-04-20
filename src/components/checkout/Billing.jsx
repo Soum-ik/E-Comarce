@@ -4,9 +4,22 @@ import bkask from "../../../public/images/payment-method/bkash.jpg";
 import roket from "../../../public/images/payment-method/roket.jpg";
 import nogod from "../../../public/images/payment-method/nogod.jpg";
 import Image from "next/image";
-function Billing({ data, total, _cartItem }) {
+import Order from "./order";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+function Billing({   }) {
   const images = [bkask, roket, nogod];
-  const [form, setForm] = useState(data);
+
+  const { id } = data;
+  const customersId = id;
+
+  // find user_id from cartitem
+  const cartItem = cartItem.map((item) => item.userId);
+
+  const qnt = cartItem.length.toString();
+
+  const [loading, setLoading] = useState(false);
+
   const handChanges = (name, value) => {
     setForm((prevState) => ({
       ...prevState,
@@ -14,6 +27,9 @@ function Billing({ data, total, _cartItem }) {
     }));
   };
 
+  const [isModel, setIsModel] = useState(false);
+
+  const [form, setForm] = useState(data);
   const [postCode, setPostCode] = useState("");
   const [road, setroad] = useState("");
   const [city, setcity] = useState("");
@@ -28,8 +44,44 @@ function Billing({ data, total, _cartItem }) {
     setroad(event.target.value);
   };
 
+  const { email, firstName, lastName } = form;
+
+  const handleModel = async () => {
+    setLoading(true);
+    if (postCode === "" || road === "" || city === "" || country === "") {
+      setLoading(false);
+      toast.error("Fill uncomplete");
+      return;
+    }
+    const { data } = await axios.post(
+      `/api/invoice/?customersId=${customersId}`,
+      {
+        email,
+        firstName,
+        lastName,
+        road,
+        city,
+        country,
+        postCode,
+        userId, // Assuming userId is a single ID, convert it to an array if necessary
+        total,
+        qnt,
+        discount,
+      }
+    );
+
+    if (data.status === "fail") {
+      toast.error("Order have an problem");
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    setIsModel(!isModel);
+  };
   return (
-    <>
+    <div className="">
+      <Toaster position="top-center" />
       <div className=" border p-3 mb-5 rounded-md">
         <h1>Payment Method</h1>
         <div className=" group relative flex gap-10 my-5 ">
@@ -216,10 +268,16 @@ function Billing({ data, total, _cartItem }) {
           </div>
         </div>
       </div>
-      <button className=" flex rounded-md mt-5 px-3 py-2 bg-red-500  text-white justify-end">
-        Place Order
+      <button
+        onClick={handleModel}
+        type="submit"
+        className=" flex rounded-md mt-5 px-3 py-2 bg-red-500  text-white justify-end"
+      >
+        {loading ? "loading..." : "Place Order"}
       </button>
-    </>
+
+      {isModel && <Order data={data} onClose={() => setIsModel(!isModel)} />}
+    </div>
   );
 }
 

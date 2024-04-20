@@ -27,7 +27,7 @@ export default function Footer() {
                     Email{" "}
                   </label>
 
-                  <div className="border border-gray-100 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
+                  {/* <div className="border border-gray-100 p-2 focus-within:ring sm:flex sm:items-center sm:gap-4">
                     <input
                       type="email"
                       id="UserEmail"
@@ -38,7 +38,7 @@ export default function Footer() {
                     <button className="mt-1 w-full bg-red-500 rounded px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-none hover:bg-red-600 sm:mt-0 sm:w-auto sm:shrink-0">
                       Sign Up
                     </button>
-                  </div>
+                  </div> */}
                 </form>
               </div>
 

@@ -6,8 +6,6 @@ import { BsSearch } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import { CiHeart, CiMenuFries } from "react-icons/ci";
 import { MdOutlineShoppingCart } from "react-icons/md";
-
-import toast, { Toaster } from "react-hot-toast";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import Popup from "../PopUp";

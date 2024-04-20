@@ -6,6 +6,8 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginForm() {
   const Route = useRouter();
+  
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -19,18 +21,23 @@ export default function LoginForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading state to true
 
     const config = { method: "POST", body: JSON.stringify(form) };
     try {
       const res = await fetch(`/api/customer/users/login`, config);
       const data = await res.json();
-      console.log(data, "data from cliebt fromt component");
-      if (data.status !== "fail") {
-        toast.success("log in Successfully");
+      console.log(data, "data from");
+      if (data.status === "fail") {
+        toast.error(data.data);
+      } else {
+        toast.success("Login Successfully");
         Route.replace("/cart");
       }
     } catch (error) {
       console.log(error, "this is the erro ");
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -77,7 +84,8 @@ export default function LoginForm() {
           type="submit"
           className="inline-block shrink-0 rounded-md border border-red-600 bg-red-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
         >
-          log In
+          {loading ? "Loading..." : "Log In"}{" "}
+          {/* Show loading text if loading */}
         </button>
 
         <p className="mt-4 text-sm text-gray-500 sm:mt-0">

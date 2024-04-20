@@ -79,8 +79,8 @@ export const header_info = async () => {
 
 // ................ customer information.......................
 
-export const getSingelCustomer = async (user_id) => {
-  const data = await fetch(`${apiUrl}/customer/users/login?user_id=${user_id}`);
+export const getSingelCustomer = async (id) => {
+  const data = await fetch(`${apiUrl}/customer/users/login?user_id=${id}`);
   const response = await data.json();
   return response;
 };

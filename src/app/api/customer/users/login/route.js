@@ -1,5 +1,6 @@
 import { CreateToken } from "@/utility/JwtTokehelper";
 import { PrismaClient } from "@prisma/client";
+import { data } from "autoprefixer";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -14,7 +15,10 @@ export async function POST(req) {
     });
 
     if (!result) {
-      return NextResponse.json({ status: "Sorry this not valid information" });
+      return NextResponse.json({
+        status: "fail",
+        data: "Sorry this not valid information",
+      });
     } else {
       let token = await CreateToken(result["email"], result["id"]);
       console.log(token, "create token");

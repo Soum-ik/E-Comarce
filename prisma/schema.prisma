@@ -82,11 +82,13 @@ model invoices {
   qnt       String
   firstName String
   lastName  String
-  email     String @unique
+  email     String
   city      String
   road      String
   postCode  String
   country   String
+
+  orderId String
 
   customers   customers? @relation(fields: [customersId], references: [id], onDelete: Restrict, onUpdate: Cascade)
   customersId String?    @db.ObjectId

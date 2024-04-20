@@ -1,4 +1,5 @@
 "use client";
+import { flattenedDecrypt } from "jose";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,10 +15,11 @@ export default function RegisterForm() {
     password: "",
     city: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const [confirmpass, setConfirmpass] = useState("");
   const [checked, setChecked] = useState(false);
-  console.log(checked);
+
   const handChanges = (name, value) => {
     setForm((prevState) => ({
       ...prevState,
@@ -26,21 +28,35 @@ export default function RegisterForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (form.password !== confirmpass && checked) {
-      return toast.error("check your form carefully");
+    setLoading(true);
+
+    // password checker
+    if (form.password !== confirmpass) {
+      setLoading(false);
+      return toast.error("Password are not matched!");
+    }
+    // check mark
+    if (!checked) {
+      setLoading(false);
+      return toast.error("Fill Check Mark");
     }
 
     const config = { method: "POST", body: JSON.stringify(form) };
     try {
-      const res = await fetch(`/api/customer/users/register`, config);
-      console.log(res);
-      if (res) {
-        toast.success("Account Successfull Created");
+      const respons = await fetch(`/api/customer/users/register`, config);
+      const data = await respons.json();
+      console.log(data, "respons form register");
+      if (data.status === "used") {
+        toast.error(data.data);
+      } else {
+        toast.success(data.status);
         Route.replace("/auth/login");
       }
     } catch (error) {
       console.log(error);
       console.log("/auth/register");
+    } finally {
+      setLoading(false); // Reset loading state
     }
   };
 
@@ -219,7 +235,8 @@ export default function RegisterForm() {
           type="submit"
           className="inline-block shrink-0 rounded-md border border-red-600 bg-red-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-red-600 focus:outline-none focus:ring active:text-red-500"
         >
-          Create an account
+          {loading ? "Loading..." : "Create an new account "}{" "}
+          {/* Show loading text if loading */}
         </button>
 
         <p className="mt-4 text-sm text-gray-500 sm:mt-0">

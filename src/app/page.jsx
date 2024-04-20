@@ -21,7 +21,7 @@ export default function Page() {
       <div className=" w-full lg:mb-20">
         <Image
           width={10000}
-          height={10}
+          height={100}
           alt="dicount image"
           src="/images/dicount.png"
         />
