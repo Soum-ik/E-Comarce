@@ -4,13 +4,19 @@ import bkask from "../../../public/images/payment-method/bkash.jpg";
 import roket from "../../../public/images/payment-method/roket.jpg";
 import nogod from "../../../public/images/payment-method/nogod.jpg";
 import Image from "next/image";
-import Order from "./order";
-import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-function Billing({ data, total, discount, cartItem }) {
-  const images = [bkask, roket, nogod];
+import { useRouter, useSearchParams } from "next/navigation";
 
-  const { id } = data;
+function Billing({ customerdata, total, cartItem }) {
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+
+  let _productId = searchParams.get("product_id");
+  // let _payment = searchParams.get("product_id");
+
+  const images = [bkask, roket, nogod];
+  const { id } = customerdata;
   const customersId = id;
 
   // find user_id from cartitem
@@ -28,8 +34,7 @@ function Billing({ data, total, discount, cartItem }) {
   };
 
   const [isModel, setIsModel] = useState(false);
-
-  const [form, setForm] = useState(data);
+  const [form, setForm] = useState(customerdata);
   const [postCode, setPostCode] = useState("");
   const [road, setroad] = useState("");
   const [city, setcity] = useState("");
@@ -45,7 +50,19 @@ function Billing({ data, total, discount, cartItem }) {
   };
 
   const { email, firstName, lastName } = form;
-
+  let body = {
+    _productId,
+    email,
+    firstName,
+    lastName,
+    total,
+    postCode,
+    road,
+    city,
+    country,
+    customersId,
+    qnt,
+  };
   const handleModel = async () => {
     setLoading(true);
     if (postCode === "" || road === "" || city === "" || country === "") {
@@ -53,32 +70,32 @@ function Billing({ data, total, discount, cartItem }) {
       toast.error("Fill uncomplete");
       return;
     }
-    console.log("before sending request");
-    const { data } = await axios.post(
-      `/api/invoice/?customersId=${customersId}`,
-      {
-        email,
-        firstName,
-        lastName,
-        road,
-        city,
-        country,
-        postCode,
-        userId, // Assuming userId is a single ID, convert it to an array if necessary
-        total,
-        qnt,
-        discount,
+
+    // let api = `https://e-comarce-sslcommerz-getway.onrender.com`
+    async function getData() {
+      try {
+        const res = await fetch(
+          "https://e-comarce-sslcommerz-getway.onrender.com/payment",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          }
+        );
+        toast.loading("Loading...");
+        const data = await res.json();
+        console.log(data, "data");
+        router.replace(data.url);
+        setLoading(false);
+      } catch (error) {
+        console.error("An error occurred:", error);
+        setLoading(false);
       }
-    );
-    console.log(data);
-    if (data.status === "fail") {
-      toast.error("Order have an problem");
-      setLoading(false);
-      return;
     }
 
-    setLoading(false);
-    setIsModel(!isModel);
+    getData();
   };
   return (
     <div className="">
@@ -271,13 +288,12 @@ function Billing({ data, total, discount, cartItem }) {
       </div>
       <button
         onClick={handleModel}
+        disabled={loading}
         type="submit"
-        className=" flex rounded-md mt-5 px-3 py-2 bg-red-500  text-white justify-end"
+        className=" flex rounded-md mt-5 px-3 py-2 bg-red-500 disabled:bg-red-300  text-white justify-end"
       >
         {loading ? "loading..." : "Place Order"}
       </button>
-
-      {isModel && <Order data={data} onClose={() => setIsModel(!isModel)} />}
     </div>
   );
 }

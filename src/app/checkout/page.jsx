@@ -16,7 +16,12 @@ async function Page({ searchParams }) {
           <Summary cartItem={_cartItem} total={total_price} />
         </div>
         <div className="lg:col-span-2">
-          <Billing discount={null} data={data} cartItem={_cartItem} total={total_price} />
+          <Billing
+            discount={null}
+            customerdata={data}
+            cartItem={_cartItem}
+            total={total_price}
+          />
         </div>
       </div>
     </div>

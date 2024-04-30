@@ -22,7 +22,7 @@ function Summary({ total = 0, charge = 0, cartItem }) {
 
       {/* items */}
       <div className=" space-y-4">
-        {cartItem.map((item, index) => (
+        {cartItem?.map((item, index) => (
           <div
             key={index}
             className=" px-2 flex items-start  justify-start gap-5"
