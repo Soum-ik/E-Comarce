@@ -145,8 +145,6 @@ function DisplayProduct({ data, user_id }) {
               onClose={() => setPopUpDelete(!popUpDelete)}
             />
           )}
-
-          {/* popup screen for edit  */}
         </table>
       </>
     </section>

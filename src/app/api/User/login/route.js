@@ -25,3 +25,32 @@ export async function POST(req) {
     return NextResponse.json({ status: "fail" });
   }
 }
+
+export async function PUT(req, res) {
+  try {
+    const prisma = new PrismaClient();
+    const reqBody = await req.json();
+
+    const result = await prisma.users.update({
+      where: {
+        id: reqBody.id,
+      },
+      data: {
+        firstName: reqBody.firstName,
+        lastName: reqBody.lastName,
+        email: reqBody.email,
+        password: reqBody.password,
+      },
+    });
+    console.log(result, "result data");
+    return NextResponse.json({ status: "success", data: result });
+    // if (result.modifacation > 0) {
+    //   return NextResponse.json({ status: "success" });
+    // } else {
+    //   return NextResponse.json({ status: "fail" });
+    // }
+  } catch (error) {
+    console.log(error, "from backend error");
+    return NextResponse.json({ status: "fail", error: error });
+  }
+}

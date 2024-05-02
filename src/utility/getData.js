@@ -84,3 +84,13 @@ export const getSingelCustomer = async (id) => {
   const response = await data.json();
   return response;
 };
+
+// ................. get orderc order ..............................
+export const getOrder = async (id) => {
+ 
+  const data = await fetch(
+    `https://e-comarce-sslcommerz-getway.onrender.com/order-details/${id}`
+  );
+  const response = await data.json();
+  return response;
+};
