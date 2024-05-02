@@ -5,7 +5,7 @@ async function page() {
   const { data } = await getProduct();
   const user_id = await header_info();
   return (
-    <div className=" container my-10">
+    <div className="bg-gray-100 py-3 rounded-md">
       <DisplayProduct data={data} user_id={user_id} />
     </div>
   );

@@ -6,7 +6,7 @@ async function page() {
   const user_id = await header_info();
 
   return (
-    <div className=" container my-10">
+    <div className=" bg-gray-100 rounded-md p-3 container">
       <DisplayCetagory data={data} user_id={user_id} />
     </div>
   );

@@ -5,11 +5,12 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function Sign() {
-  const Router = useRouter();
+  const router = useRouter();
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
   const handChanges = (name, value) => {
     setForm((prevState) => ({
       ...prevState,
@@ -18,14 +19,17 @@ export default function Sign() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const config = { method: "POST", body: JSON.stringify(form) };
     const res = await fetch(`/api/User/login`, config);
-    
+
     if (res.ok) {
       toast.success("Login SuccessFull");
-      Router("/dashboard");
+      router.replace("/dashboard");
+      setLoading(false);
     } else {
       toast.error("Login Unsuccess");
+      setLoading(false);
     }
   };
 
@@ -92,7 +96,7 @@ export default function Sign() {
                   type="submit"
                   className="w-full px-3 py-4 text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none"
                 >
-                  Sign in
+                  {loading ? `loading...` :`Sign in`}
                 </button>
               </div>
               <p className="text-sm text-center text-gray-400">
