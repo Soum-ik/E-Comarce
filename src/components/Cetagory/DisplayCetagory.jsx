@@ -21,7 +21,7 @@ function DisplayCetagory({ data, user_id }) {
     const getSingleCategory = async () => {
       if (cetagoryId) {
         const data = await axios.patch(
-          `http://localhost:3000/api/category?user_id=${user_id}&category_id=${cetagoryId}`
+          `/api/category?user_id=${user_id}&category_id=${cetagoryId}`
         );
         const res = await data.json();
         setSingleCetagory(res.data.name);
