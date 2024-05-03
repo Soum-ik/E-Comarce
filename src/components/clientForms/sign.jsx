@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginForm() {
   const Route = useRouter();
-  
+
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     email: "",
@@ -27,12 +27,17 @@ export default function LoginForm() {
     try {
       const res = await fetch(`/api/customer/users/login`, config);
       const data = await res.json();
-      console.log(data, "data from");
+
+      if (data.status === 3001) {
+        toast.error(data.data);
+        return;
+      }
+
       if (data.status === "fail") {
         toast.error(data.data);
       } else {
         toast.success("Login Successfully");
-        Route.replace("/cart");
+        Route.replace("/");
       }
     } catch (error) {
       console.log(error, "this is the erro ");

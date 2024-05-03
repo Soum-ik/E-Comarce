@@ -1,6 +1,5 @@
 import { CreateToken } from "@/utility/JwtTokehelper";
 import { PrismaClient } from "@prisma/client";
-import { data } from "autoprefixer";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -52,6 +51,14 @@ export async function GET(req, res) {
         id: true,
       },
     });
+
+    if (!result) {
+      return NextResponse.json({
+        status: "Data not found",
+        data: result,
+        status: 3001,
+      });
+    }
 
     return NextResponse.json({ status: "Data found", data: result });
   } catch (error) {
