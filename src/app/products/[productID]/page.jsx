@@ -1,36 +1,36 @@
 "use server";
 
 import ProDeCart from "@/components/Product/ProDeCart";
-// import { getSingleProductClient } from "@/utility/getData";
+import { getSingleProductClient } from "@/utility/getData";
 import Image from "next/image";
 import React from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export default async function Page({ params }) {
-  // const id = params.productID;
-  // const _productId = id;
-  // const { data } = await getSingleProductClient(id);
-  // const {
-  //   imagurl,
-  //   name,
-  //   title,
-  //   price,
-  //   brand,
-  //   discountPercentage,
-  //   unit,
-  //   description,
-  // } = data;
+  const id = params.productID;
+  const _productId = id;
+  const { data } = await getSingleProductClient(id);
+  const {
+    imagurl,
+    name,
+    title,
+    price,
+    brand,
+    discountPercentage,
+    unit,
+    description,
+  } = data;
 
-  // function Notification() {
-  //   toast.success("Your add product successfull");
-  // }
+  function Notification() {
+    toast.success("Your add product successfull");
+  }
 
   return (
     <div className=" container my-10 gap-10">
       <h1 className=" mb-10 lg:text-3xl ">Product Details</h1>
 
-      {/* <ProductDetails data={data} /> */}
-      {/* <div className="">
+      {/* <ProductDetail data={data} /> */}
+      <div className="">
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10">
    
           <Toaster position="top-center" />
@@ -86,7 +86,7 @@ export default async function Page({ params }) {
             <p className=" mt-5">{description}</p>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

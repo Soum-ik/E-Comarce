@@ -1,15 +1,15 @@
-// import { getOrder, header_info } from "@/utility/getData";
+import { getOrder, header_info } from "@/utility/getData";
 
 async function page() {
-  // const data = await header_info();
+  const data = await header_info();
 
-  // const { order } = await getOrder(data);
-  // console.log(order, "data dashboard");
+  const { order } = await getOrder(data);
+  console.log(order, "data dashboard");
   return (
     <div className=" w-full border p-3 rounded-md">
       <h1 className=" text-center text-2xl">Order List </h1>
 
-      {/* <div className="   grid grid-cols-2   md:grid-cols-1 gap-5 ">
+      <div className="   grid grid-cols-2   md:grid-cols-1 gap-5 ">
         {order?.map((data, index) => (
           <div key={index} className=" rounded-md border p-3">
             <div>
@@ -96,7 +96,7 @@ async function page() {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 }

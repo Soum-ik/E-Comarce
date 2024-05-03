@@ -1,15 +1,15 @@
-// import { getCetagory, getProduct, header_info } from "@/utility/getData";
+import { getCetagory, getProduct, header_info } from "@/utility/getData";
 import Link from "next/link";
 
 async function Page() {
-  // const user_id = await header_info();
-  // const { data } = await getProduct();
-  // const total_category = await getCetagory();
+  const user_id = await header_info();
+  const { data } = await getProduct();
+  const total_category = await getCetagory();
 
   return (
     <div className="bg-gray-100 rounded-md p-3 pb-10">
       {/* introducation */}
-      {/* <div className=" flex flex-col md:flex-row items-center justify-between">
+      <div className=" flex flex-col md:flex-row items-center justify-between">
         <h1 className=" lg:text-3xl  text-xl">
           Welcome Back, Soumik Sarkar <br />
           <p className=" text-black/60 text-sm lg:mt-4 lg:text-xl leading-[20px] lg:leading-[27px]">
@@ -26,9 +26,9 @@ async function Page() {
             View Shop
           </Link>
         </div>
-      </div> */}
+      </div>
       {/* jsut view */}
-      {/* <div className="  px-6 gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
+      <div className="  px-6 gap-4 grid grid-cols-2 lg:grid-cols-3  place-items-center lg:mt-20">
         <div className=" flex  items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-28 md:px-24 sm:px-18 px-2 py-5 min-w-max rounded-md">
           <h1 className="text-xl">Total Profit</h1>
           <p className=" text-lg mt-2 ">{`200K`}</p>
@@ -43,7 +43,7 @@ async function Page() {
             {total_category.data.length || "loading...."}
           </p>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
