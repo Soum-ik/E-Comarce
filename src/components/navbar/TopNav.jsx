@@ -35,7 +35,7 @@ export default function TopNav() {
           </button>
           <Link
             href={"/dashboard"}
-            className=" fix hidden md:inline-flex items-center   border-0 py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
+            className=" border shadow-md fix hidden md:inline-flex items-center    py-1 px-3 focus:outline-none  rounded text-base mt-4 md:mt-0"
           >
             Admin
           </Link>

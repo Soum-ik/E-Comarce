@@ -1,38 +1,42 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Hero() {
   return (
     <>
       <div className=" bg-[#f8c2bf] w-full  min-h-[30vh] lg:mt-2 mt-10 lg:min-h-[40vh] ">
-        <section className="text-gray-600 body-font">
-          <div className="container mx-auto flex px-5 py-5 md:flex-row flex-col items-center">
-            <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-              <h1 className="title-font font-bold sm:text-4xl text-3xl mb-4  text-gray-900">
-                The best way to
-                <br className="hidden lg:inline-block" />
-                stuff your wallet
+        <section className="bg-gray-50 text-gray-600 body-font">
+          <div className="mx-auto max-w-screen-xl px-4  lg:flex  lg:min-h-[50vh] lg:items-center">
+            <div className="mx-auto max-w-xl text-center">
+              <h1 className="text-3xl font-extrabold sm:text-5xl">
+                Understand User Flow.
+                <strong className="font-extrabold text-red-700 sm:block">
+                  {" "}
+                  Increase Selles.{" "}
+                </strong>
               </h1>
-              <p className="mb-8 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Doloribus quaerat, illum officia consequatur laboriosam atque
-                iure corporis nihil optio voluptates ea eligendi tempora ipsa
-                adi
+
+              <p className="mt-4 sm:text-xl/relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nesciunt illo tenetur fuga ducimus numquam ea!
               </p>
-              <div className="flex justify-center">
-                <button className="inline-flex text-white  bg-[#d73e34] shadow-xl border-0 py-2 px-6 focus:outline-none   rounded text-lg">
-                  Shop Now
-                </button>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <a
+                  className="block w-full rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-red-700 focus:outline-none focus:ring active:bg-red-500 sm:w-auto"
+                  href="#"
+                >
+                  Get Started
+                </a>
+
+                <Link
+                  className="block w-full rounded px-12 py-3 text-sm font-medium text-red-600 shadow hover:text-red-700 focus:outline-none focus:ring active:text-red-500 sm:w-auto"
+                  href={'/products'}
+                >
+                  More
+                </Link>
               </div>
-            </div>
-            <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-              <Image
-                src="/images/hero.png"
-                alt="hero imagee"
-                width={400}
-                height={700}
-                // style={}
-              />
             </div>
           </div>
         </section>

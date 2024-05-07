@@ -37,7 +37,7 @@ export default async function Page({ params }) {
           <div className="p-5 bg-[#E9E9E9] rounded-xl flex items-center  justify-center ">
             <Image
               alt="Product Image"
-              className=" w-full  max-h-[350px] rounded-md"
+              className=" w-full object-cover max-h-[350px] rounded-md"
               src={imagurl}
               width={300}
               height={400}

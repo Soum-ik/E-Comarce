@@ -43,7 +43,7 @@ const Card = ({ data }) => {
           </div>
           <div className=" text-center mt-10 flex items-center justify-center flex-col">
             <h1 className=" text-[#777777] text-sm">{item.name}</h1>
-            <h1 className=" text-[#2B2B2D] text-xl mt-5 ">{item.title}</h1>
+            <h1 className=" text-[#2B2B2D] text-lg mt-2 ">{item.title}</h1>
             <div className="  mt-4 flex items-center text-center justify-center gap-4 ">
               <h1 className=" text-[#F53E32] font-semibold">${item.price}</h1>
               <h1 className=" text-[#7A7A7A] line-through">
