@@ -46,14 +46,16 @@ function DisplayCetagory({ data, user_id }) {
   const handleDeleteFun = async (cetagoryId) => {
     console.log(cetagoryId);
     toast.loading("product deleteing");
-    const config = {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    };
 
     const data = await fetch(
       `/api/category?category_id=${cetagoryId}&user_id=${user_id}`,
-      config
+      {
+        next: {
+          revalidate: 1000,
+        },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      }
     );
     const response = await data.json();
     toast.loading("loading...");

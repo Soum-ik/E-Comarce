@@ -1,5 +1,6 @@
 import { CreateToken } from "@/utility/JwtTokehelper";
 import { PrismaClient } from "@prisma/client";
+
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -10,7 +11,13 @@ export async function POST(req) {
       where: reqBody,
     });
     if (!result) {
-      return NextResponse.json({ status: "Sorry this not valid information" });
+      return NextResponse.json(
+        {
+          message: "Sorry this not valid information",
+          status: "data are not found",
+        },
+        { status: 304,}
+      );
     } else {
       let token = await CreateToken(result["email"], result["id"]);
 

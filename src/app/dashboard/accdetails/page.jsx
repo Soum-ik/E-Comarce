@@ -1,12 +1,11 @@
 import Form from "@/components/dashboard/form/form";
 import { header_info } from "@/utility/getData";
-import { Prisma, PrismaClient } from "@prisma/client";
-import { useRouter } from "next/navigation";
+import prisma from "@/utility/lib/prisma";
 import toast, { Toaster } from "react-hot-toast";
 
 export default async function page() {
-  const prisma = new PrismaClient();
   const user_id = await header_info();
+
   const data = await prisma.users.findUnique({
     where: {
       id: user_id,

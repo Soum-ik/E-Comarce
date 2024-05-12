@@ -8,7 +8,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default async function Page({ params }) {
   const id = params.productID;
-  const _productId = id;
   const { data } = await getSingleProductClient(id);
   const {
     imagurl,
@@ -24,6 +23,7 @@ export default async function Page({ params }) {
   function Notification() {
     toast.success("Your add product successfull");
   }
+  const _productId = id;
 
   return (
     <div className=" container my-10 gap-10">
@@ -32,7 +32,6 @@ export default async function Page({ params }) {
       {/* <ProductDetail data={data} /> */}
       <div className="">
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-10">
-   
           <Toaster position="top-center" />
           <div className="p-5 bg-[#E9E9E9] rounded-xl flex items-center  justify-center ">
             <Image
@@ -43,7 +42,6 @@ export default async function Page({ params }) {
               height={400}
             />
           </div>
- 
 
           <div className=" ">
             <div className=" border-b pb-5">
@@ -89,4 +87,17 @@ export default async function Page({ params }) {
       </div>
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const resonse = await fetch(
+    `https://ecomarce-next.vercel.app/api/customer/product`,
+    {
+      next: {
+        revalidate: 1000,
+      },
+    }
+  );
+  const { data } = await resonse.json();
+  return data.map((item) => item.productID);
 }

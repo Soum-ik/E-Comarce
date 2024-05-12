@@ -20,14 +20,21 @@ export default function Sign() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const config = { method: "POST", body: JSON.stringify(form) };
-    const res = await fetch(`/api/User/login`, config);
 
-    if (res.ok) {
-      toast.success("Login SuccessFull");
-      router.replace("/dashboard");
-      setLoading(false);
-    } else {
+    try {
+      const config = { method: "POST", body: JSON.stringify(form) };
+      const res = await fetch(`/api/User/login`, config);
+
+      const data = await res.json();
+      if (data.status === "success") {
+        toast.success("Login Successfully");
+        router.push("/dashboard");
+        setLoading(false);
+      } else {
+        toast.error(data.status);
+        setLoading(false);
+      }
+    } catch (error) {
       toast.error("Login Unsuccess");
       setLoading(false);
     }
@@ -96,7 +103,7 @@ export default function Sign() {
                   type="submit"
                   className="w-full px-3 py-4 text-white bg-red-500 rounded-md focus:bg-red-600 focus:outline-none"
                 >
-                  {loading ? `loading...` :`Sign in`}
+                  {loading ? `loading...` : `Sign in`}
                 </button>
               </div>
               <p className="text-sm text-center text-gray-400">

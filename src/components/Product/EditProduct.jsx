@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
-export default function EditProductForm({ data, user_id, product_Id }) {
+export default async function EditProductForm({ data, product_Id }) {
+  const user_id = await header_info();
   const Route = useRouter();
   const [form, setForm] = useState(data);
   console.log(form);
@@ -61,7 +61,6 @@ export default function EditProductForm({ data, user_id, product_Id }) {
           discountPercentage: "",
         });
         Route.replace("/dashboard/product");
-         
       } else {
         toast.error("Update Unsuccessful");
       }
