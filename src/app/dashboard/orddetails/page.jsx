@@ -4,7 +4,6 @@ async function page() {
   const data = await header_info();
 
   const { order } = await getOrder(data);
-  console.log(order, "data dashboard");
   return (
     <div className=" w-full border p-3 rounded-md">
       <h1 className=" text-center text-2xl">Order List </h1>

@@ -14,7 +14,9 @@ console.log({ apiUrl });
 // customer product
 export const getProductClinet = async () => {
   const data = await fetch(`${apiUrl}/customer/product`, {
-    cache: "no-cache",
+    next: {
+      revalidate: 1000,
+    },
   });
   const response = await data.json();
   return response;
@@ -87,7 +89,6 @@ export const getSingelCustomer = async (id) => {
 
 // ................. get orderc order ..............................
 export const getOrder = async (id) => {
- 
   const data = await fetch(
     `https://e-comarce-sslcommerz-getway.onrender.com/order-details/${id}`
   );

@@ -1,8 +1,7 @@
-import { getCetagory, getProduct, header_info } from "@/utility/getData";
+import { getCetagory, getProduct, } from "@/utility/getData";
 import Link from "next/link";
 
-async function Page() {
-  const user_id = await header_info();
+async function Page() {;
   const { data } = await getProduct();
   const total_category = await getCetagory();
 
