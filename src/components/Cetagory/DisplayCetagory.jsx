@@ -80,7 +80,7 @@ function DisplayCetagory({ data, user_id }) {
       <Toaster position="top-center" />
       <div className=" flex items-center justify-between  lg:flex-row  flex-1 border-b-2 pb-5">
         <div>
-          <h1 className=" text-2xl font-semibold">All Cetagorys</h1>
+        <h1 className=" text-2xl font-semibold">All Cetagorys</h1>
           <p className=" text-base">{`Let's create a new Cetagorys! 🎉`}</p>
         </div>
         <div>
