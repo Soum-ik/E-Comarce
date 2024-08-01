@@ -18,7 +18,7 @@ export default function Page() {
       <Hero />
       <ShowCase />
       <Products />
-      <div className=" w-full lg:mb-20">
+      <div className=" w-full lg:my-16">
         <Image
           width={10000}
           height={100}

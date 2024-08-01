@@ -2,11 +2,15 @@
 import { useState } from "react";
 import { FaShoppingBag } from "react-icons/fa";
 import Image from "next/image";
-import Link from "next/link"; 
+import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
+
+// import Cookies from 'js-cookies';
 
 const Card = ({ data }) => {
   const productData = data;
+  const getDataFromLocalStorage = localStorage.getItem('cartItems');
+  console.log(getDataFromLocalStorage, "get data from local storage");
   const [cart, setCart] = useState([]);
 
   function addToCart(item) {
@@ -14,9 +18,9 @@ const Card = ({ data }) => {
     toast.success("Add Cart Successfull");
     localStorage.setItem("cartItems", JSON.stringify([...cart, item]));
   }
- 
+
   return (
-    <div className=" lg:my-20 my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       <Toaster position="top-center" />
 
       {productData?.map((item, index) => (

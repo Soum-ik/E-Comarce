@@ -1,14 +1,23 @@
 import Card from "@/components/card";
+import SearchJobsSidebar from "@/components/SearchProductSidebar";
 import { getProductClinet } from "@/utility/getData";
+import prisma from "@/utility/lib/prisma";
 import React from "react";
 
 async function Page() {
-  const { data } = await getProductClinet();
+  const data = await prisma.product.findMany();
+  console.log(data, "datas");
 
   return (
     <div className=" container py-20">
       <h1 className=" text-[30px]"> All Product </h1>
-      <Card data={data} />
+      <div className="flex gap-5 md:my-8 my-4">
+        <SearchJobsSidebar />
+        <div className=" flex-1">
+          <Card data={data} />
+        </div>
+      </div>
+
 
       <ol class="flex justify-center gap-1 text-xs font-medium">
         <li>

@@ -2,9 +2,10 @@
 
 import ProDeCart from "@/components/Product/ProDeCart";
 import { getSingleProductClient } from "@/utility/getData";
+import { prismaConfig } from "@/utility/lib/promise";
 import Image from "next/image";
 import React from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 export default async function Page({ params }) {
   const id = params.productID;
@@ -20,9 +21,7 @@ export default async function Page({ params }) {
     description,
   } = data;
 
-  function Notification() {
-    toast.success("Your add product successfull");
-  }
+
   const _productId = id;
 
   return (
@@ -90,14 +89,6 @@ export default async function Page({ params }) {
 }
 
 export async function generateStaticParams() {
-  const resonse = await fetch(
-    `https://ecomarce-next.vercel.app/api/customer/product`,
-    {
-      next: {
-        revalidate: 1000,
-      },
-    }
-  );
-  const { data } = await resonse.json();
-  return data.map((item) => item.productID);
+  const result = await prismaConfig.product.findMany();
+  return result.map((item) => ({ params: { productID: item.productID } }));
 }
