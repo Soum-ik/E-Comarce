@@ -1,14 +1,18 @@
-import { getProductClinet } from "@/utility/getData";
-import Card from "./card";
+"use server";
 
+import Card from "./card";
+import { prismaConfig } from "@/utility/lib/promise";
 async function Products() {
-  let { data } = await getProductClinet();
-  data = data.slice(0, 6); // Assign the sliced array back to data variable
+  let datas = await prismaConfig.product.findMany();
+  datas = datas?.slice(0, 6);
 
   return (
     <div className=" container ">
       <h1 className=" text-[30px]"> Popular Product </h1>
-      <Card data={data} />
+      <div className="flex items-center">
+
+        <Card data={datas} />
+      </div>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { VerifyToken } from "./JwtTokehelper";
 
 export async function CheckMiddlewareOnDashboard(req) {
   try {
-    const token = req.cookies.get("token");
+    const token = req.cookies.get("adminAuthToken");
 
     if (!token) {
       throw new Error("Token not found in cookies");

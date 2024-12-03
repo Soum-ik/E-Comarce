@@ -19,6 +19,7 @@ export const getProductClinet = async () => {
     },
   });
   const response = await data.json();
+  console.log(response, "checking response");
   return response;
 };
 

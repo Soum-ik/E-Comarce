@@ -1,15 +1,26 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 function ProDeCart({ data, productId }) {
   const router = useRouter();
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem('cartItems');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
+  useEffect(() => {
+    const getDataFromLocalStorage = localStorage.getItem('cartItems');
+    if (getDataFromLocalStorage) {
+      setCart(JSON.parse(getDataFromLocalStorage));
+    }
+  }, []);
+
 
   function addToCart(item) {
     setCart([...cart, item]);
-    toast.success("Product Successfull");
+    toast.success("Product Cart Successfully");
     localStorage.setItem("cartItems", JSON.stringify([...cart, item]));
   }
 

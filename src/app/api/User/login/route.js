@@ -2,34 +2,50 @@ import { CreateToken } from "@/utility/JwtTokehelper";
 import { PrismaClient } from "@prisma/client";
 
 import { NextResponse } from "next/server";
+let prisma = new PrismaClient();
+
 
 export async function POST(req) {
   try {
-    const prisma = new PrismaClient();
     const reqBody = await req.json();
+    console.log(reqBody, 'request body checking');
+
     const result = await prisma.users.findUnique({
-      where: reqBody,
+      where: {
+        email: reqBody.email,
+        password: reqBody.password
+      }
     });
+
+
     if (!result) {
       return NextResponse.json(
         {
-          message: "Sorry this not valid information",
-          status: "data are not found",
+          message: "Sorry, this is not valid information",
+          status: "data not found",
         },
-        { status: 304,}
+        { status: 404 } // 404 Not Found is more appropriate here
       );
     } else {
-      let token = await CreateToken(result["email"], result["id"]);
+      const token = await CreateToken(result.email, result.id);
+      console.log('Token created successfully', token);
 
-      const experiData = new Date(Date.now() + 24 * 60 * 60 * 3600);
-      const cookieString = `token=${token}; expires=${experiData.toUTCString()}; path=/ `;
+      const expiryDate = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours from now
+      const cookieString = `adminAuthToken=${token}; expires=${expiryDate.toUTCString()}; path=/; HttpOnly; Secure; SameSite=Strict`;
+
       return NextResponse.json(
         { status: "success", data: token },
-        { status: 200, headers: { "set-cookie": cookieString } }
+        { status: 200, headers: { "Set-Cookie": cookieString } }
       );
     }
   } catch (error) {
-    return NextResponse.json({ status: "fail" });
+    console.error('Error processing request:', error);
+    return NextResponse.json(
+      { status: "fail", message: "Internal Server Error" },
+      { status: 500 }
+    );
+  } finally {
+    await prisma.$disconnect(); // Ensure Prisma Client is properly disconnected
   }
 }
 

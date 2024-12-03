@@ -1,0 +1,394 @@
+[
+    {
+        "name": "Orange",
+        "price": "5",
+        "unit": "20",
+        "imagurl": "https://i.ibb.co/0jdr4PN/Untitled.png",
+        "title": "Vehicles that have been damaged or burned to such an extent they are worth as scrap or sold for parts get an orange title",
+        "description": "An orange, also called sweet orange to distinguish it from the bitter orange, is the fruit of a tree in the family Rutaceae. Botanically, this is the hybrid Citrus × sinensis, between the pomelo and the mandarin orange. The chloroplast genome, and therefore the maternal line, is that of pomelo",
+        "brand": "Orange",
+        "discountPercentage": "1",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c59"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Grapes",
+        "price": "6",
+        "unit": "25",
+        "imageURL": "https://i.ibb.co/MGP1z7J/grapes.png",
+        "title": "Sweet and juicy grapes, great for snacking or adding to salads.",
+        "description": "Grapes are a popular fruit enjoyed for their sweet taste and juicy texture. They come in a variety of colors and are a good source of vitamins and antioxidants.",
+        "brand": "Grape Harvest",
+        "discountPercentage": "7",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c63"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Apple",
+        "price": "3",
+        "unit": "30",
+        "imageURL": "https://i.ibb.co/1LZK91J/apple.png",
+        "title": "Fresh and juicy apples, perfect for snacking or cooking.",
+        "description": "Apples are a popular fruit, known for their sweet taste and high fiber content. They come in various varieties, including red, green, and yellow, and are a great source of vitamins and antioxidants.",
+        "brand": "Apple",
+        "discountPercentage": "10",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c60"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Banana",
+        "price": "2",
+        "unit": "50",
+        "imageURL": "https://i.ibb.co/2djLKmg/banana.png",
+        "title": "Sweet and nutritious bananas, ideal for a quick snack.",
+        "description": "Bananas are a staple fruit known for their natural sweetness and rich potassium content. They are perfect for a quick energy boost and can be used in a variety of recipes.",
+        "brand": "Banana Co.",
+        "discountPercentage": "5",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c61"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Strawberry",
+        "price": "7",
+        "unit": "15",
+        "imageURL": "https://i.ibb.co/WzJ6LxK/strawberry.png",
+        "title": "Fresh strawberries with a burst of flavor and vibrant color.",
+        "description": "Strawberries are a delicious and versatile fruit known for their sweet taste and bright red color. They are rich in vitamins, fiber, and antioxidants, making them a healthy choice.",
+        "brand": "Berry Delight",
+        "discountPercentage": "8",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c62"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Grapes",
+        "price": "6",
+        "unit": "25",
+        "imageURL": "https://i.ibb.co/MGP1z7J/grapes.png",
+        "title": "Sweet and juicy grapes, great for snacking or adding to salads.",
+        "description": "Grapes are a popular fruit enjoyed for their sweet taste and juicy texture. They come in a variety of colors and are a good source of vitamins and antioxidants.",
+        "brand": "Grape Harvest",
+        "discountPercentage": "7",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c63"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Peach",
+        "price": "4",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/4WZ3k5G/peach.png",
+        "title": "Juicy peaches with a sweet and tangy flavor.",
+        "description": "Peaches are a delicious stone fruit with a sweet and slightly tart taste. They are rich in vitamins A and C and are perfect for eating fresh or using in desserts.",
+        "brand": "Peachy",
+        "discountPercentage": "6",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c64"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Pineapple",
+        "price": "8",
+        "unit": "10",
+        "imageURL": "https://i.ibb.co/2y0Bf6k/pineapple.png",
+        "title": "Tropical pineapple with a sweet and tangy flavor.",
+        "description": "Pineapples are a tropical fruit known for their sweet, juicy flesh and tangy taste. They are rich in vitamin C and enzymes that aid digestion.",
+        "brand": "Tropica",
+        "discountPercentage": "12",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c65"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Mango",
+        "price": "5",
+        "unit": "15",
+        "imageURL": "https://i.ibb.co/8Nkf8Jd/mango.png",
+        "title": "Sweet and juicy mangoes, ideal for smoothies and desserts.",
+        "description": "Mangoes are known for their sweet and rich flavor. They are high in vitamins A and C and can be enjoyed fresh or used in various recipes.",
+        "brand": "Mango Magic",
+        "discountPercentage": "9",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c66"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Watermelon",
+        "price": "4",
+        "unit": "12",
+        "imageURL": "https://i.ibb.co/Bs1Wxsd/watermelon.png",
+        "title": "Refreshing watermelon with a high water content.",
+        "description": "Watermelons are a hydrating fruit with a sweet taste. They are perfect for cooling off on a hot day and are a good source of vitamins A and C.",
+        "brand": "HydroFruits",
+        "discountPercentage": "11",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c67"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Blueberry",
+        "price": "9",
+        "unit": "10",
+        "imageURL": "https://i.ibb.co/1z6djvF/blueberry.png",
+        "title": "Small, sweet blueberries rich in antioxidants.",
+        "description": "Blueberries are known for their sweet flavor and high antioxidant content. They are great for snacking or adding to cereals and desserts.",
+        "brand": "BerryBest",
+        "discountPercentage": "15",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c68"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Cherry",
+        "price": "10",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/X4BdMKX/cherry.png",
+        "title": "Juicy cherries with a sweet and tart flavor.",
+        "description": "Cherries are a popular fruit known for their sweet and slightly tart taste. They are rich in antioxidants and perfect for eating fresh or using in desserts.",
+        "brand": "Cherry Bliss",
+        "discountPercentage": "10",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c69"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Kiwi",
+        "price": "4",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/ypHgK6D/kiwi.png",
+        "title": "Tangy and sweet kiwi fruit with a unique flavor.",
+        "description": "Kiwis are known for their tangy flavor and high vitamin C content. They have a unique taste and are great for adding a tropical touch to dishes.",
+        "brand": "KiwiKing",
+        "discountPercentage": "7",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c70"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Papaya",
+        "price": "6",
+        "unit": "15",
+        "imageURL": "https://i.ibb.co/9v6FQz3/papaya.png",
+        "title": "Sweet papayas rich in vitamins and enzymes.",
+        "description": "Papayas are a tropical fruit known for their sweet taste and high content of vitamins A and C. They are also known for their digestive enzymes.",
+        "brand": "Papaya Paradise",
+        "discountPercentage": "8",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c71"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Pomegranate",
+        "price": "7",
+        "unit": "12",
+        "imageURL": "https://i.ibb.co/Y8WvqT3/pomegranate.png",
+        "title": "Rich and juicy pomegranates with numerous seeds.",
+        "description": "Pomegranates are known for their juicy seeds and rich flavor. They are high in antioxidants and vitamins and can be eaten fresh or used in cooking.",
+        "brand": "PomeGems",
+        "discountPercentage": "6",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c72"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Raspberry",
+        "price": "8",
+        "unit": "15",
+        "imageURL": "https://i.ibb.co/ZzDtnK9/raspberry.png",
+        "title": "Sweet and tangy raspberries, perfect for desserts.",
+        "description": "Raspberries are a delicious fruit known for their sweet and tangy taste. They are rich in fiber and vitamins and are ideal for making desserts or smoothies.",
+        "brand": "BerryBites",
+        "discountPercentage": "9",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c73"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Blackberry",
+        "price": "7",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/R7xz6g8/blackberry.png",
+        "title": "Rich and juicy blackberries, great for snacking.",
+        "description": "Blackberries are known for their rich flavor and high nutrient content. They are perfect for snacking or adding to dishes for a burst of flavor.",
+        "brand": "BlackBerry Co.",
+        "discountPercentage": "11",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c74"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Lemon",
+        "price": "2",
+        "unit": "25",
+        "imageURL": "https://i.ibb.co/T0J3dLm/lemon.png",
+        "title": "Tart and tangy lemons, ideal for flavoring dishes.",
+        "description": "Lemons are known for their tart flavor and high vitamin C content. They are widely used to add flavor to dishes and beverages.",
+        "brand": "CitrusFresh",
+        "discountPercentage": "10",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c75"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Orange",
+        "price": "5",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/0jdr4PN/Untitled.png",
+        "title": "Oranges are rich in vitamin C and perfect for juices.",
+        "description": "Oranges are a sweet and tangy fruit known for their high vitamin C content. They are great for fresh juice or eating as a healthy snack.",
+        "brand": "Citrus King",
+        "discountPercentage": "5",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c76"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Plum",
+        "price": "4",
+        "unit": "18",
+        "imageURL": "https://i.ibb.co/8f8bsFw/plum.png",
+        "title": "Sweet and tart plums, great for eating fresh or baking.",
+        "description": "Plums are known for their sweet and tart flavor. They are rich in vitamins and can be enjoyed fresh or used in baking and cooking.",
+        "brand": "PlumPerfect",
+        "discountPercentage": "6",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c77"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Fig",
+        "price": "9",
+        "unit": "12",
+        "imageURL": "https://i.ibb.co/fQk4G9b/fig.png",
+        "title": "Sweet figs with a unique texture and flavor.",
+        "description": "Figs are a sweet fruit with a unique texture, perfect for snacking or adding to salads and desserts. They are rich in fiber and nutrients.",
+        "brand": "FiggyDelight",
+        "discountPercentage": "8",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c78"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Date",
+        "price": "12",
+        "unit": "10",
+        "imageURL": "https://i.ibb.co/1MsWxTB/date.png",
+        "title": "Sweet and chewy dates, ideal for snacking or baking.",
+        "description": "Dates are a sweet fruit with a chewy texture. They are great for snacking or adding to baked goods and are high in natural sugars and fiber.",
+        "brand": "DateDelight",
+        "discountPercentage": "7",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c79"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Apricot",
+        "price": "6",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/QFzr7D2/apricot.png",
+        "title": "Sweet apricots with a hint of tartness.",
+        "description": "Apricots are a sweet and slightly tart fruit, rich in vitamins A and C. They are perfect for eating fresh or using in jams and desserts.",
+        "brand": "ApricotFarm",
+        "discountPercentage": "10",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c80"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Tangerine",
+        "price": "4",
+        "unit": "30",
+        "imageURL": "https://i.ibb.co/z7c9f8x/tangerine.png",
+        "title": "Sweet and easy-to-peel tangerines.",
+        "description": "Tangerines are small, sweet citrus fruits that are easy to peel and perfect for snacking or adding to salads.",
+        "brand": "TangerineTreat",
+        "discountPercentage": "6",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c81"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Cantaloupe",
+        "price": "5",
+        "unit": "8",
+        "imageURL": "https://i.ibb.co/T0LJc7N/cantaloupe.png",
+        "title": "Sweet and juicy cantaloupe, perfect for summer.",
+        "description": "Cantaloupes are a type of melon known for their sweet, juicy flesh and high water content. They are ideal for cooling off on a hot day.",
+        "brand": "MelonFresh",
+        "discountPercentage": "8",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c82"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Nectarine",
+        "price": "5",
+        "unit": "20",
+        "imageURL": "https://i.ibb.co/b55RGG1/nectarine.png",
+        "title": "Sweet nectarines with a smooth skin.",
+        "description": "Nectarines are a smooth-skinned fruit similar to peaches but with a slightly firmer texture. They are sweet and juicy, ideal for snacking or adding to salads.",
+        "brand": "Nectarina",
+        "discountPercentage": "7",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c83"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Guava",
+        "price": "7",
+        "unit": "15",
+        "imageURL": "https://i.ibb.co/fn9qHZb/guava.png",
+        "title": "Tropical guavas with a unique flavor and aroma.",
+        "description": "Guavas are tropical fruits known for their unique flavor and aroma. They are rich in vitamin C and can be eaten fresh or used in juices and desserts.",
+        "brand": "GuavaGroves",
+        "discountPercentage": "9",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c84"
+        },
+        "categoryId": "Fruit"
+    },
+    {
+        "name": "Persimmon",
+        "price": "6",
+        "unit": "12",
+        "imageURL": "https://i.ibb.co/DrX2yRm/persimmon.png",
+        "title": "Sweet persimmons with a rich flavor.",
+        "description": "Persimmons are a sweet fruit with a rich, honey-like flavor. They are great for eating fresh or adding to salads and desserts.",
+        "brand": "PersimmonPleasure",
+        "discountPercentage": "8",
+        "userId": {
+            "$oid": "65f069642a6634d8c4fc4c85"
+        },
+        "categoryId": "Fruit"
+    }
+]

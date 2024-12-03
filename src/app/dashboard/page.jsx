@@ -2,8 +2,8 @@ import { getCetagory, getProduct, } from "@/utility/getData";
 import Link from "next/link";
 
 async function Page() {;
-  const { data } = await getProduct();
-  const total_category = await getCetagory();
+  // const { data } = await getProduct();
+  // const total_category = await getCetagory();
 
   return (
     <div className="bg-gray-100 rounded-md p-3 pb-10">
@@ -34,12 +34,12 @@ async function Page() {;
         </div>
         <div className="flex  items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-28 md:px-24 sm:px-18 px-2 py-5 min-w-max rounded-md">
           <h1 className="text-xl">Product</h1>
-          <p className=" text-lg mt-2">{data.length || "loading...."}</p>
+          {/* <p className=" text-lg mt-2">{data.length || "loading...."}</p> */}
         </div>
         <div className=" flex  items-center justify-center flex-col bg-neutral-50 text-neutral-800 shadow-xl lg:px-28 md:px-24 sm:px-18 px-2 py-5 min-w-max rounded-md">
           <h1 className="text-xl">Categoris</h1>
           <p className=" text-lg mt-2">
-            {total_category.data.length || "loading...."}
+            {/* {total_category.data.length || "loading...."} */}
           </p>
         </div>
       </div>
